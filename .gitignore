@@ -1,0 +1,5 @@
+.DS_Store
+.vercel
+# Photos brutes : seuls les WebP optimisés (img/) partent en ligne
+photos-brutes/
+captures/

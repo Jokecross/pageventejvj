@@ -1,0 +1,1330 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jean Val Jean — L’IA, sans savoir coder</title>
+<meta name="description" content="Génère tes premiers euros grâce à l’IA, sans compétences et sans savoir coder. Les outils, les méthodes et les scripts sont fournis.">
+<meta name="theme-color" content="#0B0B0C">
+<!-- Indexation : noindex par défaut (trafic TikTok, Instagram, Snap). Le retirer ici ET dans vercel.json pour indexer. -->
+<meta name="robots" content="noindex">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Jean Val Jean — L’IA, sans savoir coder">
+<meta property="og:description" content="Pas de trading. Pas de casino. L’IA.">
+<!-- [À COMPLÉTER] adresse absolue (https://…/img/partage.png) quand le domaine est connu -->
+<meta property="og:image" content="img/partage.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Inter+Tight:wght@600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<script defer src="/_vercel/insights/script.js"></script>
+<script>document.documentElement.classList.add('js');</script>
+
+<style>
+/* ============================================================
+   DA « Nuit 2 étoiles » — noir, blanc cassé, un seul or
+   ============================================================ */
+:root{
+  --fond:   #0B0B0C;
+  --fond-2: #141416;
+  --texte:  #F5F2EA;
+  --gris:   #A8A6A0;
+  --or:     #E3B64F;
+  --ligne:  rgba(255,255,255,.08);
+  --ligne-2: rgba(255,255,255,.14);
+  --or-voile: rgba(227,182,79,.10);
+  --or-bord:  rgba(227,182,79,.38);
+
+  --titre: 'Inter Tight', 'Inter', system-ui, sans-serif;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans:  'Inter', system-ui, -apple-system, sans-serif;
+
+  --gouttiere: 18px;
+  --col: 760px;
+}
+@media (min-width:760px){ :root{ --gouttiere:32px; } }
+
+*, *::before, *::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+body{
+  margin:0; background:var(--fond); color:var(--texte);
+  font-family:var(--sans); font-size:17px; line-height:1.65;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+@media (min-width:760px){ body{ font-size:18px; } }
+img{ display:block; max-width:100%; }
+a{ color:inherit; }
+p{ margin:0; }
+button{ font:inherit; color:inherit; }
+h1, h2, h3{ margin:0; font-family:var(--titre); font-weight:700; letter-spacing:-.028em; line-height:1.04; text-wrap:balance; }
+h3{ font-weight:600; letter-spacing:-.015em; line-height:1.25; }
+h2 em, h3 em{
+  font-family:var(--serif); font-style:italic; font-weight:400;
+  color:var(--or); letter-spacing:-.01em; font-size:1.1em; line-height:.9;
+}
+.insecable{ white-space:nowrap; }
+svg.i{ width:1em; height:1em; flex:none; }
+
+.col{ width:100%; max-width:calc(var(--col) + 2 * var(--gouttiere)); margin:0 auto; padding:0 var(--gouttiere); }
+.large{ width:100%; max-width:calc(1120px + 2 * var(--gouttiere)); margin:0 auto; padding:0 var(--gouttiere); }
+.sec{ padding:88px 0; position:relative; }
+@media (min-width:980px){ .sec{ padding:128px 0; } }
+.centre{ text-align:center; }
+
+/* Étiquette de section : pastille fine */
+.etiquette{
+  display:inline-flex; align-items:center; gap:8px; margin:0 0 20px;
+  padding:6px 12px; border:1px solid var(--ligne-2); border-radius:999px;
+  font-size:11px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--gris);
+}
+.etiquette .couronne{ width:13px; height:9px; }
+.h2{ font-size:clamp(32px, 8.6vw, 56px); }
+.sous-titre{ margin-top:16px; color:var(--gris); }
+.entete-sec{ margin-bottom:44px; }
+.entete-sec.centre .sous-titre{ max-width:560px; margin-left:auto; margin-right:auto; }
+
+/* Fond quadrillé très discret (hero, carte finale) */
+.quadrillage{
+  position:absolute; inset:0; pointer-events:none;
+  background-image:linear-gradient(var(--ligne) 1px, transparent 1px), linear-gradient(90deg, var(--ligne) 1px, transparent 1px);
+  background-size:44px 44px; opacity:.45;
+  -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 30%, #000 30%, transparent 75%);
+          mask-image:radial-gradient(ellipse 80% 70% at 50% 30%, #000 30%, transparent 75%);
+}
+
+/* ---------------- La couronne ---------------- */
+.couronne{ width:18px; height:13px; color:var(--or); flex:none; }
+
+/* ---------------- Les boutons ---------------- */
+.bouton{
+  position:relative; display:inline-flex; align-items:center; justify-content:center; gap:14px;
+  min-height:62px; padding:0 10px 0 28px; border:0; border-radius:14px;
+  background:var(--or); color:var(--fond);
+  font-family:var(--titre); font-size:15px; font-weight:700; letter-spacing:.07em;
+  text-transform:uppercase; text-decoration:none; cursor:pointer;
+  box-shadow:0 1px 0 rgba(255,255,255,.35) inset, 0 14px 34px -14px rgba(227,182,79,.55);
+  transition:transform .2s ease, box-shadow .2s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+.bouton:hover{ transform:translateY(-1px); box-shadow:0 1px 0 rgba(255,255,255,.35) inset, 0 18px 40px -14px rgba(227,182,79,.7); }
+.bouton:active{ transform:translateY(1px); }
+.bouton .fleche{
+  width:42px; height:42px; border-radius:10px; background:var(--fond); color:var(--or);
+  display:flex; align-items:center; justify-content:center; transition:transform .2s ease;
+}
+.bouton:hover .fleche{ transform:translateX(2px); }
+.bouton .fleche svg{ width:18px; height:18px; }
+.bouton:focus-visible, .faq summary:focus-visible, .modal-fermer:focus-visible, .vsl-affiche:focus-visible{ outline:2px solid var(--texte); outline-offset:3px; }
+.bloc-cta{ display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center; }
+.bloc-cta .bouton{ width:100%; max-width:420px; justify-content:space-between; }
+.rassurance{ display:block; font-size:14px; line-height:1.5; color:var(--gris); text-wrap:balance; }
+.rassurance .point{ display:inline-block; vertical-align:middle; margin:-2px 10px 0 0; }
+.point{ position:relative; width:8px; height:8px; border-radius:50%; background:var(--or); flex:none; }
+.point::after{ content:""; position:absolute; inset:-4px; border-radius:50%; border:1px solid var(--or-bord); }
+
+/* ---------------- Emplacements photo ----------------
+   La photo se pose sur un fond neutre ; tant que le fichier
+   n'existe pas, l'image se retire (onerror) et le fond reste. */
+.photo{ position:relative; margin:0; overflow:hidden; background:var(--fond-2); }
+.photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.photo-vide{
+  position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;
+  font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gris);
+}
+.photo-vide .couronne{ color:var(--gris); opacity:.6; width:22px; height:16px; }
+
+/* ---------------- Apparition douce, une seule fois ---------------- */
+.js .r{ opacity:0; transform:translateY(18px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+.js .r.vu{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){ .js .r{ opacity:1; transform:none; transition:none; } }
+
+/* ============================================================
+   Bandeau du haut
+   ============================================================ */
+.bandeau{
+  background:var(--or); color:var(--fond); text-align:center;
+  padding:10px var(--gouttiere); font-size:14px; font-weight:500; line-height:1.45;
+}
+.bandeau b{ font-weight:700; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{ position:relative; overflow-x:clip; padding:28px 0 72px; text-align:center; }
+@media (min-width:980px){ .hero{ padding:48px 0 104px; } }
+.ciel{
+  position:absolute; inset:0; width:100%; height:100%; pointer-events:none;
+  -webkit-mask-image:linear-gradient(#000 45%, transparent 85%);
+          mask-image:linear-gradient(#000 45%, transparent 85%);
+}
+/* L'horizon : la ville la nuit, une lueur dorée très basse sous la vidéo */
+.horizon{
+  position:absolute; left:50%; bottom:-140px; width:1100px; height:420px; transform:translateX(-50%);
+  background:radial-gradient(closest-side, rgba(227,182,79,.16), transparent); pointer-events:none;
+}
+.hero > .col{ position:relative; }
+
+.profil{ display:inline-flex; align-items:center; gap:12px; text-align:left; margin-bottom:22px; }
+.profil .photo{ width:52px; height:52px; border-radius:50%; box-shadow:0 0 0 2px var(--fond), 0 0 0 3px var(--or); }
+.profil .photo-vide .couronne{ width:16px; height:12px; }
+.profil-nom{ display:flex; align-items:center; gap:7px; font-family:var(--titre); font-weight:700; font-size:17px; letter-spacing:-.01em; line-height:1.2; }
+.profil-nom .couronne{ width:16px; height:12px; }
+.profil-abonnes{ font-size:13px; color:var(--gris); line-height:1.3; margin-top:2px; }
+
+.badge{
+  display:inline-flex; align-items:center; gap:10px; margin:0 0 22px;
+  padding:7px 14px 7px 10px; border:1px solid var(--or-bord); border-radius:999px; background:var(--or-voile);
+  font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--gris); font-weight:500;
+}
+.badge b{ color:var(--texte); font-weight:600; }
+.badge .nouveau{ background:var(--or); color:var(--fond); border-radius:999px; padding:2px 8px; font-weight:700; letter-spacing:.12em; }
+
+/* L'accroche (sa bio), puis la promesse en titre */
+.accroche{
+  display:inline-flex; align-items:center; gap:12px; margin-bottom:16px;
+  font-family:var(--titre); font-weight:600; font-size:clamp(17px, 4.8vw, 22px); letter-spacing:-.01em; color:var(--texte);
+}
+.accroche::before, .accroche::after{ content:""; width:18px; height:1px; background:var(--or); }
+.hero h1{ font-size:clamp(40px, 11vw, 88px); line-height:1.02; letter-spacing:-.03em; max-width:11ch; margin:0 auto; }
+@media (min-width:980px){ .hero h1{ font-size:76px; max-width:15ch; } }
+.hero h1 em{
+  font-family:var(--serif); font-style:italic; font-weight:400; color:var(--or);
+  font-size:1.18em; line-height:.8; letter-spacing:-.01em;
+}
+.hero .chapo{ max-width:600px; margin:26px auto 0; color:var(--gris); font-size:17px; text-wrap:balance; }
+.hero .chapo strong{ color:var(--texte); font-weight:500; }
+@media (min-width:760px){ .hero .chapo{ font-size:19px; } }
+
+
+.vsl{
+  position:relative; max-width:880px; margin:36px auto 32px; padding:6px;
+  border-radius:22px; background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.03));
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.9);
+}
+.vsl-cadre{ position:relative; aspect-ratio:var(--ratio, 16 / 9); border-radius:16px; overflow:hidden; background:var(--fond-2); }
+.vsl-cadre iframe, .vsl-cadre video{ position:absolute; inset:0; width:100%; height:100%; border:0; background:#000; }
+.vsl-affiche{
+  position:absolute; inset:0; width:100%; padding:0; border:0; cursor:pointer;
+  background:var(--fond-2) center / cover no-repeat; color:var(--texte);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
+}
+.vsl-lecture{
+  width:76px; height:76px; border-radius:50%; background:var(--or); color:var(--fond);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 0 0 10px rgba(227,182,79,.14);
+  transition:transform .25s ease;
+}
+.vsl-affiche:hover .vsl-lecture{ transform:scale(1.05); }
+.vsl-lecture svg{ width:22px; height:24px; margin-left:4px; fill:currentColor; }
+.vsl-legende{ font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--gris); }
+.vsl-son{
+  position:absolute; left:14px; top:14px; display:inline-flex; align-items:center; gap:8px;
+  padding:6px 10px; border-radius:999px; background:rgba(11,11,12,.75); font-size:12px; color:var(--texte);
+}
+
+/* ============================================================
+   CHIFFRES
+   ============================================================ */
+.chiffres{ display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; }
+.chiffre{
+  padding:18px 8px; border:1px solid var(--ligne); border-radius:16px; background:var(--fond-2); text-align:center;
+}
+.chiffre b{ display:block; font-family:var(--titre); font-weight:700; font-size:clamp(24px, 7vw, 40px); letter-spacing:-.03em; line-height:1.1; }
+.chiffre b em{ font-family:var(--serif); font-style:italic; font-weight:400; color:var(--or); }
+.chiffre span{ display:block; margin-top:6px; font-size:12.5px; line-height:1.35; color:var(--gris); }
+@media (min-width:760px){ .chiffre{ padding:26px 16px; } .chiffre span{ font-size:14px; } }
+
+/* ============================================================
+   LA QUESTION — carte lettre
+   ============================================================ */
+.lettre{
+  border:1px solid var(--ligne); border-radius:24px; overflow:hidden; background:var(--fond-2);
+  display:grid;
+}
+.lettre > .photo{ aspect-ratio:4 / 3.4; }
+.lettre > .photo::after{ content:""; position:absolute; inset:auto 0 0 0; height:45%; background:linear-gradient(transparent, var(--fond-2)); }
+.lettre-corps{ padding:8px 22px 30px; position:relative; }
+.lettre h2{ font-size:clamp(34px, 9vw, 52px); margin-bottom:22px; }
+.lettre .texte{ font-size:19px; line-height:1.6; }
+.lettre .texte + .texte{ margin-top:14px; }
+.signature{ display:flex; align-items:center; gap:12px; margin-top:28px; padding-top:22px; border-top:1px solid var(--ligne); }
+.signature .photo{ width:40px; height:40px; border-radius:50%; box-shadow:0 0 0 1px var(--or-bord); }
+.signature .photo-vide .couronne{ width:14px; height:10px; }
+.signature b{ display:flex; align-items:center; gap:6px; font-family:var(--titre); font-weight:600; font-size:16px; line-height:1.2; }
+.signature span{ font-size:13px; color:var(--gris); }
+@media (min-width:860px){
+  .lettre{ grid-template-columns:1fr 1.1fr; }
+  .lettre > .photo{ aspect-ratio:auto; min-height:560px; }
+  .lettre > .photo::after{ inset:0 0 0 auto; width:40%; height:auto; background:linear-gradient(90deg, transparent, var(--fond-2)); }
+  .lettre-corps{ padding:56px 48px 48px 16px; align-self:center; }
+}
+
+/* ============================================================
+   L'OFFRE — ce que tu reçois
+   ============================================================ */
+.offre{
+  position:relative; border-radius:26px; padding:34px 20px 24px; overflow:hidden;
+  background:linear-gradient(180deg, rgba(227,182,79,.09), rgba(227,182,79,0) 220px), var(--fond-2);
+  border:1px solid var(--or-bord);
+  box-shadow:0 50px 100px -40px rgba(0,0,0,.9);
+}
+.offre::before{
+  content:""; position:absolute; left:10%; right:10%; top:0; height:1px;
+  background:linear-gradient(90deg, transparent, var(--or), transparent);
+}
+@media (min-width:760px){ .offre{ padding:52px 48px 40px; } }
+.offre .entete-sec{ margin-bottom:28px; }
+.inclus{ list-style:none; margin:0; padding:0; }
+.inclus li{
+  display:grid; grid-template-columns:auto 1fr auto; gap:14px; align-items:start;
+  padding:20px 0; border-top:1px solid var(--ligne);
+}
+.inclus .n{
+  width:34px; height:34px; border-radius:10px; border:1px solid var(--or-bord); background:var(--or-voile);
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px; font-weight:500; color:var(--or); font-variant-numeric:tabular-nums;
+}
+.inclus h3{ font-size:18px; margin-bottom:4px; }
+.inclus p{ font-size:15px; line-height:1.55; color:var(--gris); }
+.pastille-inclus{
+  display:none; margin-top:4px; padding:4px 10px; border-radius:999px; background:var(--texte); color:var(--fond);
+  font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap;
+}
+.coche-inclus{ width:24px; height:24px; margin-top:4px; border-radius:50%; background:var(--or); color:var(--fond); display:flex; align-items:center; justify-content:center; }
+.coche-inclus svg{ width:12px; height:12px; }
+@media (min-width:520px){ .pastille-inclus{ display:inline-block; } .coche-inclus{ display:none; } }
+@media (min-width:760px){ .inclus h3{ font-size:20px; } .inclus p{ font-size:16px; } }
+.prix{
+  display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  margin-top:6px; padding:24px 0 6px; border-top:1px solid var(--ligne-2);
+}
+.prix small{ display:block; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--gris); margin-bottom:4px; }
+.prix b{ font-family:var(--titre); font-weight:700; font-size:20px; letter-spacing:-.01em; }
+.prix .montant{ font-family:var(--serif); font-style:italic; font-weight:400; color:var(--or); font-size:clamp(34px, 9vw, 46px); line-height:1; letter-spacing:-.01em; }
+.offre .note-offre{ margin:16px 0 26px; font-size:15px; color:var(--gris); }
+.offre .bouton{ width:100%; justify-content:space-between; }
+.offre .rassurance{ text-align:center; margin-top:14px; }
+
+/* ============================================================
+   BANDEAU QUI DÉFILE
+   ============================================================ */
+.defile{ border-top:1px solid var(--ligne); border-bottom:1px solid var(--ligne); overflow:hidden; padding:16px 0; background:var(--fond); }
+.defile-piste{ display:flex; width:max-content; animation:defile 38s linear infinite; }
+.defile-piste span{
+  display:inline-flex; align-items:center; gap:18px; padding-right:18px; white-space:nowrap;
+  font-family:var(--titre); font-weight:600; font-size:15px; letter-spacing:.02em;
+}
+.defile-piste .couronne{ width:14px; height:10px; }
+@keyframes defile{ to{ transform:translateX(-50%); } }
+@media (prefers-reduced-motion: reduce){ .defile-piste{ animation:none; } }
+
+/* ============================================================
+   LE PARCOURS — rail qui se remplit
+   ============================================================ */
+.parcours-liste{ position:relative; }
+.parcours-ol{ list-style:none; margin:0; padding:0; }
+.rail{ position:absolute; left:23px; top:24px; bottom:24px; width:1px; background:var(--ligne-2); }
+.rail-plein{ position:absolute; left:0; top:0; width:100%; height:calc(var(--p, 0) * 100%); background:var(--or); }
+.etape-p{ position:relative; display:grid; grid-template-columns:48px 1fr; gap:14px; margin-bottom:14px; }
+.etape-p:last-child{ margin-bottom:0; }
+.noeud{
+  position:relative; z-index:1; width:48px; height:48px; border-radius:50%;
+  background:var(--fond); border:1px solid var(--ligne-2); color:var(--gris);
+  display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:500; font-variant-numeric:tabular-nums;
+  transition:border-color .4s ease, color .4s ease, background-color .4s ease;
+}
+.etape-p.atteinte .noeud{ border-color:var(--or); color:var(--fond); background:var(--or); }
+.carte-p{ padding:20px 20px 22px; border:1px solid var(--ligne); border-radius:18px; background:var(--fond-2); }
+.carte-p h3{ font-size:21px; margin-bottom:6px; }
+.carte-p p{ color:var(--gris); font-size:16px; }
+.livrable{
+  display:inline-flex; align-items:center; gap:8px; margin-top:14px; padding:6px 12px;
+  border:1px solid var(--ligne-2); border-radius:999px; font-size:13px; line-height:1.3;
+}
+.livrable small{ color:var(--or); font-size:11px; letter-spacing:.12em; text-transform:uppercase; font-weight:500; }
+@media (min-width:760px){ .carte-p{ padding:26px 28px; } .carte-p h3{ font-size:24px; } }
+
+/* ============================================================
+   POUR QUI
+   ============================================================ */
+.pour-qui{ display:grid; gap:14px; }
+@media (min-width:760px){ .pour-qui{ grid-template-columns:1fr 1fr; } }
+.qui{ padding:26px 22px; border-radius:20px; border:1px solid var(--ligne); background:var(--fond-2); }
+.qui.oui{ border-color:var(--or-bord); background:linear-gradient(180deg, var(--or-voile), transparent 70%), var(--fond-2); }
+.qui h3{ font-size:22px; margin-bottom:16px; display:flex; align-items:center; gap:12px; }
+.qui ul{ list-style:none; margin:0; padding:0; }
+.qui li{ display:flex; gap:12px; align-items:flex-start; padding:14px 0; border-top:1px solid var(--ligne); line-height:1.45; font-weight:500; text-wrap:pretty; }
+.rond{ width:24px; height:24px; border-radius:50%; flex:none; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+.rond svg{ width:12px; height:12px; }
+.oui .rond{ background:var(--or); color:var(--fond); }
+.non .rond{ background:rgba(255,255,255,.08); color:var(--gris); }
+.non li{ color:var(--gris); }
+
+/* ============================================================
+   COMMENT ÇA SE PASSE
+   ============================================================ */
+.etapes{ list-style:none; margin:0; padding:0; display:grid; gap:12px; counter-reset:e; }
+.etape{
+  position:relative; display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:start;
+  padding:22px 20px; border:1px solid var(--ligne); border-radius:18px; background:var(--fond-2);
+}
+.etape .icone{
+  width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+  background:var(--or-voile); border:1px solid var(--or-bord); color:var(--or);
+}
+.etape .icone svg{ width:22px; height:22px; }
+.etape small{ display:block; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--or); margin-bottom:4px; }
+.etape h3{ font-size:20px; margin-bottom:4px; }
+.etape p{ color:var(--gris); font-size:16px; }
+.etape.vedette{ border-color:var(--or-bord); }
+@media (min-width:980px){
+  .etapes{ grid-template-columns:repeat(3, 1fr); gap:16px; }
+  .etape{ grid-template-columns:1fr; align-content:start; padding:28px 26px; }
+}
+
+/* ============================================================
+   QUI JE SUIS
+   ============================================================ */
+.moi{ display:grid; gap:28px; align-items:center; }
+.moi .photo{ aspect-ratio:4 / 5; border-radius:24px; border:1px solid var(--ligne); }
+.moi .photo .tag{
+  position:absolute; left:14px; bottom:14px; z-index:1; display:inline-flex; align-items:center; gap:8px;
+  padding:8px 12px; border-radius:999px; background:rgba(11,11,12,.8); border:1px solid var(--ligne-2);
+  font-size:13px; font-weight:500;
+}
+.moi .photo .tag .couronne{ width:14px; height:10px; }
+.moi h2{ font-size:clamp(34px, 9vw, 56px); margin-bottom:18px; }
+.moi .grand{ font-family:var(--titre); font-weight:600; font-size:clamp(22px, 5.6vw, 28px); letter-spacing:-.02em; line-height:1.3; }
+.moi .grand b{ color:var(--or); font-weight:700; }
+.parcours{ margin-top:16px; color:var(--gris); }
+.parcours:empty{ display:none; }
+.reseaux{ display:flex; flex-wrap:wrap; gap:8px; margin-top:24px; }
+.reseaux span{ padding:7px 13px; border:1px solid var(--ligne-2); border-radius:999px; font-size:13px; color:var(--gris); }
+@media (min-width:860px){ .moi{ grid-template-columns:1fr 1.1fr; gap:64px; } }
+
+/* ============================================================
+   FAQ — cartes
+   ============================================================ */
+.faq{ display:grid; gap:10px; }
+.faq details{ border:1px solid var(--ligne); border-radius:16px; background:var(--fond-2); transition:border-color .25s ease; }
+.faq details[open]{ border-color:var(--or-bord); }
+.faq summary{
+  display:flex; align-items:center; justify-content:space-between; gap:18px;
+  min-height:48px; padding:20px 18px 20px 20px; cursor:pointer; list-style:none;
+  font-family:var(--titre); font-size:17px; font-weight:600; letter-spacing:-.01em; line-height:1.35;
+}
+.faq summary::-webkit-details-marker{ display:none; }
+.plus{
+  position:relative; width:30px; height:30px; flex:none; border-radius:50%; border:1px solid var(--or-bord);
+  transition:transform .3s ease, background-color .3s ease;
+}
+.plus::before, .plus::after{ content:""; position:absolute; left:50%; top:50%; background:var(--or); transform:translate(-50%, -50%); }
+.plus::before{ width:11px; height:1.5px; }
+.plus::after{ width:1.5px; height:11px; }
+.faq details[open] .plus{ transform:rotate(45deg); background:var(--or-voile); }
+.faq details p{ padding:0 20px 22px; color:var(--gris); font-size:16px; }
+@media (min-width:760px){ .faq summary{ font-size:19px; padding:24px 24px 24px 26px; } .faq details p{ padding:0 26px 26px; } }
+
+/* ============================================================
+   CARTE FINALE
+   ============================================================ */
+.finale{
+  position:relative; overflow:hidden; text-align:center;
+  border:1px solid var(--or-bord); border-radius:28px; padding:64px 20px 44px;
+  background:var(--fond-2);
+}
+.finale .horizon{ bottom:-220px; }
+.finale > *:not(.quadrillage):not(.ciel):not(.horizon){ position:relative; }
+.finale .couronne-grande{ width:40px; height:28px; color:var(--or); margin:0 auto 24px; display:block; }
+.finale h2{ font-size:clamp(34px, 9.4vw, 64px); max-width:15ch; margin:0 auto 36px; }
+@media (min-width:760px){ .finale{ padding:88px 48px 64px; } }
+
+/* ============================================================
+   Pied de page
+   ============================================================ */
+footer{ padding:56px 0 130px; border-top:1px solid var(--ligne); font-size:13px; line-height:1.7; color:var(--gris); margin-top:88px; }
+@media (min-width:980px){ footer{ padding-bottom:64px; margin-top:128px; } }
+.pied-nom{ display:inline-flex; align-items:center; gap:10px; color:var(--texte); margin-bottom:24px; font-size:12px; font-weight:500; letter-spacing:.26em; text-transform:uppercase; }
+footer a{ text-underline-offset:3px; }
+.pied-ligne{ margin-bottom:8px; }
+.avertissements{ margin-top:32px; padding-top:24px; border-top:1px solid var(--ligne); display:grid; gap:12px; font-size:12px; opacity:.85; }
+.avertissements .resultats{ color:var(--texte); opacity:1; font-size:13px; }
+.todo{ white-space:nowrap; background:none; color:var(--or); font-size:12px; letter-spacing:.04em; }
+
+/* ============================================================
+   Barre fixe (mobile)
+   ============================================================ */
+.barre{
+  position:fixed; left:0; right:0; bottom:0; z-index:30;
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+  padding:10px var(--gouttiere) calc(10px + env(safe-area-inset-bottom));
+  background:rgba(11,11,12,.96); border-top:1px solid var(--ligne-2);
+  transform:translateY(110%); transition:transform .35s ease;
+}
+.barre.visible{ transform:none; }
+.barre-texte{ font-size:12px; line-height:1.3; color:var(--gris); }
+.barre-texte b{ display:block; font-family:var(--titre); font-size:15px; color:var(--texte); font-weight:700; letter-spacing:-.01em; }
+.barre-texte em{ font-family:var(--serif); font-size:16px; color:var(--or); }
+.barre .bouton{ min-height:52px; padding:0 8px 0 18px; gap:10px; font-size:13px; flex:none; }
+.barre .bouton .fleche{ width:36px; height:36px; border-radius:9px; }
+@media (min-width:980px){ .barre{ display:none; } }
+@media (prefers-reduced-motion: reduce){ .barre{ transition:none; } }
+
+/* ============================================================
+   La modale du formulaire
+   ============================================================ */
+.overlay{
+  position:fixed; inset:0; z-index:50; display:flex; align-items:flex-end; justify-content:center;
+  background:rgba(0,0,0,.72); opacity:0; visibility:hidden; transition:opacity .3s ease, visibility .3s;
+}
+.overlay.open{ opacity:1; visibility:visible; }
+.modal{
+  position:relative; width:100%; max-width:540px; max-height:94vh; max-height:94dvh; overflow-y:auto; overscroll-behavior:contain;
+  background:var(--fond-2); border:1px solid var(--ligne-2); border-bottom:0; border-radius:24px 24px 0 0;
+  padding:30px 20px calc(24px + env(safe-area-inset-bottom));
+  transform:translateY(40px); transition:transform .35s cubic-bezier(.2,.7,.2,1);
+}
+.modal::before{ content:""; position:absolute; left:12%; right:12%; top:0; height:1px; background:linear-gradient(90deg, transparent, var(--or), transparent); }
+.overlay.open .modal{ transform:none; }
+@media (min-width:620px){
+  .overlay{ align-items:center; padding:24px; }
+  .modal{ border-radius:24px; border-bottom:1px solid var(--ligne-2); padding:40px 36px 32px; }
+}
+@media (prefers-reduced-motion: reduce){ .overlay, .modal{ transition:none; } }
+.modal-fermer{
+  position:absolute; right:10px; top:10px; width:48px; height:48px; border-radius:50%; border:0; cursor:pointer;
+  background:rgba(255,255,255,.06); color:var(--texte); display:flex; align-items:center; justify-content:center;
+}
+.modal-fermer svg{ width:16px; height:16px; }
+.modal h2{ font-size:clamp(28px, 7.4vw, 36px); margin:8px 40px 8px 0; }
+.modal .sous-titre{ margin:0 0 24px; font-size:15px; }
+
+.deux{ display:grid; }
+@media (min-width:340px){ .deux{ grid-template-columns:1fr 1fr; column-gap:10px; } }
+.champ{ margin-bottom:16px; }
+.champ label{ display:block; margin-bottom:7px; font-size:14px; font-weight:500; color:var(--texte); }
+.champ label span{ font-weight:400; color:var(--gris); }
+.champ input, .champ select{
+  width:100%; height:54px; padding:0 16px; border-radius:12px;
+  background:var(--fond); color:var(--texte); border:1px solid var(--ligne-2);
+  font:inherit; font-size:16px; outline:none; -webkit-appearance:none; appearance:none;
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+.champ input::placeholder{ color:var(--gris); opacity:.5; }
+.champ input:focus, .champ select:focus{ border-color:var(--or); box-shadow:0 0 0 3px var(--or-voile); }
+.champ input.invalide{ border-color:var(--or); }
+.tel{ display:grid; grid-template-columns:112px 1fr; gap:8px; }
+.tel select{
+  padding-right:30px; cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23A8A6A0' stroke-width='1.2'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 14px center;
+}
+.indice{ margin-top:7px; font-size:13px; color:var(--gris); }
+
+.consent{ display:flex; gap:12px; align-items:flex-start; margin:20px 0 22px; font-size:14px; line-height:1.55; color:var(--gris); cursor:pointer; }
+.consent input{
+  flex:none; width:22px; height:22px; margin:0; border-radius:6px; cursor:pointer;
+  border:1px solid rgba(255,255,255,.28); background:var(--fond);
+  -webkit-appearance:none; appearance:none; display:grid; place-content:center;
+}
+.consent input::after{
+  content:""; width:10px; height:6px; margin-top:-2px;
+  border-left:1.8px solid var(--fond); border-bottom:1.8px solid var(--fond); transform:rotate(-45deg) scale(0);
+}
+.consent input:checked{ background:var(--or); border-color:var(--or); }
+.consent input:checked::after{ transform:rotate(-45deg) scale(1); }
+.consent input:focus-visible{ outline:2px solid var(--texte); outline-offset:2px; }
+.consent.manque input{ border-color:var(--or); box-shadow:0 0 0 3px var(--or-voile); }
+.consent a{ color:var(--texte); text-underline-offset:3px; }
+
+.hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.erreur{ margin:0 0 14px; font-size:14px; color:var(--texte); padding:10px 14px; border-radius:10px; background:var(--or-voile); border:1px solid var(--or-bord); }
+.modal .bouton{ width:100%; justify-content:space-between; }
+.modal .bouton[aria-busy="true"]{ opacity:.75; cursor:progress; }
+.modal .rassurance{ text-align:center; margin-top:14px; }
+
+.merci{ text-align:center; padding:28px 0 8px; outline:none; }
+.merci .rond-merci{ width:64px; height:64px; margin:0 auto 22px; border-radius:50%; background:var(--or); color:var(--fond); display:flex; align-items:center; justify-content:center; box-shadow:0 0 0 10px var(--or-voile); }
+.merci .rond-merci svg{ width:26px; height:26px; }
+.merci h2{ margin:0 0 14px; }
+.merci p{ color:var(--gris); }
+</style>
+</head>
+<body>
+
+<!-- Icônes -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="couronne" viewBox="0 0 24 17">
+    <path fill="currentColor" d="M2.6 13.2 1.2 3.6l5.6 4.6L12 .9l5.2 7.3 5.6-4.6-1.4 9.6z"/>
+    <rect fill="currentColor" x="2.6" y="14.6" width="18.8" height="1.6" rx=".8"/>
+  </symbol>
+  <symbol id="i-fleche" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-coche" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-croix" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-formulaire" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/></g></symbol>
+  <symbol id="i-tel" viewBox="0 0 24 24"><path d="M6.6 3.5h2.6l1.4 4-2 1.4a12 12 0 0 0 6.5 6.5l1.4-2 4 1.4v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l8-8M16 7l2 2M14 9l2 2"/></g></symbol>
+  <symbol id="i-son" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></g></symbol>
+</svg>
+
+<!-- ========== BANDEAU ========== -->
+<div class="bandeau">Accessible pour <b>moins cher qu’un resto</b>, grâce à un logiciel IA partenaire.</div>
+
+<main>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="hero">
+  <svg class="ciel" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><g fill="#F5F2EA"><circle cx="1142" cy="740" r="0.8" opacity="0.13"/><circle cx="210" cy="528" r="1.1" opacity="0.26"/><circle cx="1109" cy="245" r="1.1" opacity="0.45"/><circle cx="1311" cy="485" r="1" opacity="0.33"/><circle cx="1159" cy="239" r="1.1" opacity="0.15"/><circle cx="612" cy="891" r="0.9" opacity="0.43"/><circle cx="641" cy="84" r="1.1" opacity="0.42"/><circle cx="140" cy="41" r="1.3" opacity="0.37"/><circle cx="519" cy="839" r="1" opacity="0.34"/><circle cx="1397" cy="803" r="0.6" opacity="0.36"/><circle cx="353" cy="387" r="0.6" opacity="0.15"/><circle cx="1267" cy="473" r="1.1" opacity="0.22"/><circle cx="1035" cy="342" r="1" opacity="0.2"/><circle cx="1246" cy="628" r="1.6" opacity="0.64"/><circle cx="25" cy="300" r="1" opacity="0.36"/><circle cx="539" cy="475" r="1.1" opacity="0.5"/><circle cx="78" cy="381" r="0.9" opacity="0.16"/><circle cx="635" cy="725" r="1" opacity="0.37"/><circle cx="1281" cy="402" r="1.3" opacity="0.15"/><circle cx="614" cy="273" r="0.6" opacity="0.19"/><circle cx="979" cy="406" r="0.7" opacity="0.13"/><circle cx="775" cy="226" r="0.7" opacity="0.22"/><circle cx="650" cy="835" r="0.9" opacity="0.47"/><circle cx="607" cy="437" r="1.1" opacity="0.3"/><circle cx="205" cy="340" r="1.3" opacity="0.3"/><circle cx="528" cy="147" r="1" opacity="0.26"/><circle cx="868" cy="288" r="0.9" opacity="0.4"/><circle cx="228" cy="745" r="1" opacity="0.29"/><circle cx="82" cy="27" r="0.6" opacity="0.38"/><circle cx="534" cy="884" r="1" opacity="0.14"/><circle cx="277" cy="853" r="0.9" opacity="0.43"/><circle cx="1152" cy="472" r="1.6" opacity="0.51"/><circle cx="534" cy="866" r="0.7" opacity="0.35"/><circle cx="208" cy="565" r="0.6" opacity="0.14"/><circle cx="688" cy="652" r="1.6" opacity="0.46"/><circle cx="794" cy="555" r="0.7" opacity="0.35"/><circle cx="1312" cy="817" r="0.9" opacity="0.31"/><circle cx="29" cy="574" r="0.7" opacity="0.47"/><circle cx="635" cy="701" r="0.8" opacity="0.3"/><circle cx="834" cy="748" r="0.8" opacity="0.23"/><circle cx="1353" cy="75" r="0.8" opacity="0.22"/><circle cx="681" cy="400" r="1.1" opacity="0.15"/><circle cx="1176" cy="575" r="0.6" opacity="0.4"/><circle cx="484" cy="29" r="1.1" opacity="0.41"/><circle cx="1368" cy="631" r="0.6" opacity="0.18"/><circle cx="973" cy="360" r="1.1" opacity="0.31"/><circle cx="108" cy="67" r="0.6" opacity="0.19"/><circle cx="1020" cy="165" r="1" opacity="0.34"/><circle cx="559" cy="201" r="1" opacity="0.39"/><circle cx="181" cy="622" r="0.7" opacity="0.33"/><circle cx="7" cy="725" r="1.3" opacity="0.24"/><circle cx="549" cy="397" r="1" opacity="0.33"/><circle cx="953" cy="645" r="1.3" opacity="0.4"/><circle cx="392" cy="167" r="1.1" opacity="0.36"/><circle cx="554" cy="55" r="1.6" opacity="0.64"/><circle cx="165" cy="640" r="0.8" opacity="0.35"/><circle cx="86" cy="202" r="1.3" opacity="0.33"/><circle cx="1328" cy="264" r="1.1" opacity="0.34"/><circle cx="85" cy="804" r="0.6" opacity="0.39"/><circle cx="256" cy="616" r="1.6" opacity="0.66"/><circle cx="1430" cy="383" r="0.8" opacity="0.29"/><circle cx="291" cy="773" r="1.3" opacity="0.36"/><circle cx="400" cy="12" r="1.1" opacity="0.4"/><circle cx="1433" cy="637" r="1.3" opacity="0.32"/><circle cx="842" cy="581" r="1.1" opacity="0.16"/><circle cx="1366" cy="25" r="0.8" opacity="0.29"/><circle cx="1199" cy="47" r="0.6" opacity="0.25"/><circle cx="698" cy="417" r="1.1" opacity="0.34"/><circle cx="393" cy="119" r="0.7" opacity="0.21"/><circle cx="955" cy="884" r="1" opacity="0.36"/><circle cx="692" cy="243" r="0.6" opacity="0.19"/><circle cx="646" cy="728" r="1.3" opacity="0.12"/><circle cx="231" cy="137" r="0.9" opacity="0.45"/><circle cx="764" cy="625" r="0.9" opacity="0.2"/><circle cx="928" cy="350" r="0.9" opacity="0.45"/><circle cx="1231" cy="304" r="0.7" opacity="0.23"/><circle cx="847" cy="611" r="1.3" opacity="0.24"/><circle cx="119" cy="560" r="1.1" opacity="0.15"/><circle cx="548" cy="113" r="1.3" opacity="0.18"/><circle cx="1337" cy="45" r="0.9" opacity="0.47"/><circle cx="1271" cy="296" r="0.9" opacity="0.45"/><circle cx="935" cy="718" r="1.6" opacity="0.48"/><circle cx="158" cy="543" r="0.7" opacity="0.43"/><circle cx="729" cy="704" r="0.6" opacity="0.15"/><circle cx="1199" cy="679" r="0.8" opacity="0.18"/><circle cx="1048" cy="825" r="0.7" opacity="0.21"/><circle cx="181" cy="431" r="1" opacity="0.16"/><circle cx="884" cy="410" r="1" opacity="0.26"/><circle cx="208" cy="299" r="0.6" opacity="0.22"/><circle cx="2" cy="794" r="1.6" opacity="0.7"/><circle cx="656" cy="55" r="1.1" opacity="0.16"/><circle cx="1344" cy="302" r="1.3" opacity="0.26"/><circle cx="1199" cy="133" r="0.9" opacity="0.4"/><circle cx="1134" cy="851" r="0.7" opacity="0.16"/><circle cx="642" cy="11" r="0.7" opacity="0.38"/><circle cx="691" cy="63" r="1.1" opacity="0.2"/><circle cx="782" cy="878" r="0.8" opacity="0.22"/><circle cx="780" cy="311" r="0.8" opacity="0.29"/><circle cx="1413" cy="647" r="1.6" opacity="0.64"/><circle cx="953" cy="560" r="1.6" opacity="0.67"/><circle cx="713" cy="483" r="0.6" opacity="0.24"/><circle cx="1237" cy="514" r="0.8" opacity="0.14"/><circle cx="1047" cy="632" r="0.7" opacity="0.39"/><circle cx="247" cy="2" r="1.3" opacity="0.26"/><circle cx="266" cy="165" r="0.7" opacity="0.3"/><circle cx="1281" cy="560" r="1.1" opacity="0.15"/><circle cx="619" cy="526" r="1" opacity="0.29"/><circle cx="315" cy="886" r="1.6" opacity="0.62"/><circle cx="725" cy="474" r="1.1" opacity="0.49"/><circle cx="433" cy="383" r="1.3" opacity="0.33"/><circle cx="1290" cy="146" r="1.1" opacity="0.31"/><circle cx="1177" cy="884" r="1.6" opacity="0.62"/><circle cx="88" cy="388" r="1.1" opacity="0.22"/><circle cx="2" cy="239" r="0.9" opacity="0.27"/><circle cx="1013" cy="750" r="1.6" opacity="0.48"/><circle cx="1155" cy="402" r="0.8" opacity="0.21"/><circle cx="22" cy="46" r="1.3" opacity="0.26"/><circle cx="316" cy="265" r="1.1" opacity="0.46"/><circle cx="155" cy="714" r="0.6" opacity="0.13"/><circle cx="370" cy="191" r="1.3" opacity="0.19"/><circle cx="194" cy="89" r="1.6" opacity="0.5"/><circle cx="471" cy="378" r="1" opacity="0.34"/><circle cx="650" cy="868" r="1.3" opacity="0.19"/><circle cx="163" cy="602" r="0.7" opacity="0.34"/><circle cx="671" cy="693" r="1.3" opacity="0.35"/><circle cx="277" cy="821" r="0.9" opacity="0.21"/><circle cx="1415" cy="674" r="0.6" opacity="0.46"/><circle cx="524" cy="449" r="0.9" opacity="0.26"/><circle cx="519" cy="641" r="0.6" opacity="0.28"/><circle cx="848" cy="274" r="0.9" opacity="0.21"/><circle cx="664" cy="518" r="0.9" opacity="0.38"/><circle cx="675" cy="295" r="0.9" opacity="0.12"/><circle cx="1274" cy="547" r="1.1" opacity="0.14"/><circle cx="37" cy="659" r="1" opacity="0.25"/><circle cx="522" cy="820" r="0.6" opacity="0.27"/><circle cx="863" cy="27" r="0.7" opacity="0.35"/><circle cx="773" cy="747" r="1.3" opacity="0.47"/><circle cx="1198" cy="348" r="0.6" opacity="0.36"/><circle cx="602" cy="158" r="0.8" opacity="0.13"/><circle cx="781" cy="184" r="1.3" opacity="0.13"/><circle cx="928" cy="506" r="0.9" opacity="0.2"/><circle cx="539" cy="130" r="0.7" opacity="0.45"/><circle cx="388" cy="198" r="0.7" opacity="0.26"/><circle cx="1088" cy="574" r="0.7" opacity="0.4"/><circle cx="1300" cy="50" r="0.9" opacity="0.49"/><circle cx="761" cy="826" r="1.1" opacity="0.48"/><circle cx="1326" cy="849" r="1.1" opacity="0.15"/><circle cx="972" cy="601" r="1.3" opacity="0.16"/><circle cx="819" cy="434" r="1.1" opacity="0.19"/><circle cx="303" cy="770" r="0.7" opacity="0.24"/></g></svg>
+  <div class="quadrillage" aria-hidden="true"></div>
+  <div class="horizon" aria-hidden="true"></div>
+  <div class="col">
+    <div class="profil r">
+      <!-- Photo : img/jvj-profil.webp (carrée, 256 × 256 suffit) -->
+      <figure class="photo">
+        <span class="photo-vide"><svg class="couronne" aria-hidden="true"><use href="#couronne"/></svg></span>
+        <img src="img/jvj-profil.webp" alt="" width="104" height="104" onerror="this.remove()">
+      </figure>
+      <div>
+        <div class="profil-nom">Jean Val Jean <svg class="couronne" aria-label="couronne"><use href="#couronne"/></svg></div>
+        <div class="profil-abonnes">+140K abonnés sur TikTok</div>
+      </div>
+    </div>
+    <div class="r"><p class="badge"><span class="nouveau">Nouveau</span><b>Formation IA</b></p></div>
+    <p class="accroche r">Pas de trading. Pas de casino.</p>
+    <h1 class="r">Génère tes premiers euros grâce à <em>l’IA.</em></h1>
+    <p class="chapo r">Sans compétences et sans savoir coder.</p>
+
+    <div class="vsl r" id="vsl">
+      <div class="vsl-cadre">
+        <!-- La vidéo ne se charge qu'au clic : voir VSL dans la CONFIGURATION -->
+        <button type="button" class="vsl-affiche" id="vslAffiche" aria-label="Lancer la vidéo">
+          <span class="vsl-son"><svg class="i"><use href="#i-son"/></svg>Active le son</span>
+          <span class="vsl-lecture"><svg viewBox="0 0 18 20" aria-hidden="true"><path d="M0 0v20l18-10z"/></svg></span>
+          <span class="vsl-legende" id="vslLegende">Vidéo à venir</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="bloc-cta r" id="ctaHero">
+      <button type="button" class="bouton" data-ouvrir>Je veux commencer <span class="fleche"><svg><use href="#i-fleche"/></svg></span></button>
+      <p class="rassurance"><span class="point" aria-hidden="true"></span>Un membre de l’équipe t’appelle dans les 10 minutes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CHIFFRES (tous tirés du brief) ========== -->
+<section style="padding:0 0 88px">
+  <div class="col">
+    <div class="chiffres r">
+      <div class="chiffre"><b>+140K</b><span>abonnés sur TikTok</span></div>
+      <div class="chiffre"><b>7 <em>jours</em></b><span>pour construire ton outil</span></div>
+      <div class="chiffre"><b>24h/24</b><span>ton coach IA sur WhatsApp</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LA QUESTION ========== -->
+<section class="sec" style="padding-top:0">
+  <div class="large" style="max-width:calc(1040px + 2 * var(--gouttiere))">
+    <article class="lettre r">
+      <!-- Photo : img/jvj-question.webp (portrait, 1000 × 1250 environ) -->
+      <figure class="photo">
+        <span class="photo-vide"><svg class="couronne" aria-hidden="true"><use href="#couronne"/></svg>Portrait à venir</span>
+        <img src="img/jvj-question.webp" alt="Jean Val Jean dans un salon avec vue sur les tours" loading="lazy" decoding="async" width="1000" height="1235" style="object-position:42% 78%" onerror="this.remove()">
+      </figure>
+      <div class="lettre-corps">
+        <p class="etiquette">La question qu’on me pose le plus</p>
+        <h2>“Mais tu fais quoi, <em>en vrai</em>&nbsp;?”</h2>
+        <p class="texte">Pas de trading. Pas de casino. J’utilise l’IA, tous les jours.</p>
+        <p class="texte">Et aujourd’hui, j’ai décidé de te montrer comment t’y mettre, même si tu pars de zéro.</p>
+        <div class="signature">
+          <figure class="photo">
+            <span class="photo-vide"><svg class="couronne" aria-hidden="true"><use href="#couronne"/></svg></span>
+            <img src="img/jvj-profil.webp" alt="" width="80" height="80" loading="lazy" onerror="this.remove()">
+          </figure>
+          <div><b>Jean Val Jean <svg class="couronne" aria-hidden="true"><use href="#couronne"/></svg></b><span>@jean_val_jean06</span></div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ========== CE QUE TU REÇOIS — L'OFFRE ========== -->
+<section class="sec" id="offre" style="padding-top:0">
+  <div class="col">
+    <div class="offre r">
+      <div class="entete-sec centre">
+        <p class="etiquette"><svg class="couronne" aria-hidden="true"><use href="#couronne"/></svg>Formation IA · Jean Val Jean</p>
+        <h2 class="h2">Ce que tu <em>reçois</em></h2>
+      </div>
+      <ul class="inclus">
+        <li><span class="n">01</span><div><h3>La formation vidéo</h3><p>Tes premiers euros grâce à l’IA, étape par étape.</p></div><span><span class="pastille-inclus">Inclus</span><span class="coche-inclus" aria-label="Inclus"><svg><use href="#i-coche"/></svg></span></span></li>
+        <li><span class="n">02</span><div><h3>Ton outil, construit en 7 jours</h3><p>Pendant un workshop de 7 jours, tu construis ton propre outil avec l’IA.</p></div><span><span class="pastille-inclus">Inclus</span><span class="coche-inclus" aria-label="Inclus"><svg><use href="#i-coche"/></svg></span></span></li>
+        <li><span class="n">03</span><div><h3>Les scripts et les méthodes</h3><p>Prêts à l’emploi. Tu copies, tu adaptes, tu envoies.</p></div><span><span class="pastille-inclus">Inclus</span><span class="coche-inclus" aria-label="Inclus"><svg><use href="#i-coche"/></svg></span></span></li>
+        <li><span class="n">04</span><div><h3>Un coach IA sur WhatsApp</h3><p>Il répond à tes questions, à toute heure.</p></div><span><span class="pastille-inclus">Inclus</span><span class="coche-inclus" aria-label="Inclus"><svg><use href="#i-coche"/></svg></span></span></li>
+      </ul>
+      <div class="prix">
+        <div><small>Ton prix</small><b>Tout est inclus</b></div>
+        <span class="montant">moins cher qu’un resto</span>
+      </div>
+      <p class="note-offre">Grâce à un partenariat avec un logiciel IA, tout ça est accessible pour moins cher qu’un resto.</p>
+      <button type="button" class="bouton" data-ouvrir>Je veux commencer <span class="fleche"><svg><use href="#i-fleche"/></svg></span></button>
+      <p class="rassurance"><span class="point" aria-hidden="true"></span>Un membre de l’équipe t’appelle dans les 10 minutes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== BANDEAU QUI DÉFILE ========== -->
+<div class="defile" aria-hidden="true">
+  <div class="defile-piste">
+    <span>Pas de trading <svg class="couronne"><use href="#couronne"/></svg> Pas de casino <svg class="couronne"><use href="#couronne"/></svg> Sans savoir coder <svg class="couronne"><use href="#couronne"/></svg> Workshop de 7 jours <svg class="couronne"><use href="#couronne"/></svg> Scripts prêts à l’emploi <svg class="couronne"><use href="#couronne"/></svg> Coach IA sur WhatsApp <svg class="couronne"><use href="#couronne"/></svg></span>
+    <span>Pas de trading <svg class="couronne"><use href="#couronne"/></svg> Pas de casino <svg class="couronne"><use href="#couronne"/></svg> Sans savoir coder <svg class="couronne"><use href="#couronne"/></svg> Workshop de 7 jours <svg class="couronne"><use href="#couronne"/></svg> Scripts prêts à l’emploi <svg class="couronne"><use href="#couronne"/></svg> Coach IA sur WhatsApp <svg class="couronne"><use href="#couronne"/></svg></span>
+  </div>
+</div>
+
+<!-- ========== CE QUE TU VAS APPRENDRE — LE PARCOURS ========== -->
+<!-- Contenu à valider avec JVJ -->
+<section class="sec">
+  <div class="col">
+    <div class="entete-sec centre r">
+      <p class="etiquette">Ce que tu vas apprendre</p>
+      <h2 class="h2">Tout ce qu’il faut pour aller chercher tes <em>premiers clients.</em></h2>
+    </div>
+    <div class="parcours-liste" id="parcours">
+      <span class="rail" aria-hidden="true"><span class="rail-plein"></span></span>
+      <ol class="parcours-ol">
+      <li class="etape-p r"><span class="noeud">01</span><div class="carte-p"><h3>Les outils IA</h3><p>Ceux que j’utilise, et comment t’en servir sans savoir coder.</p><span class="livrable"><small>Tu repars avec</small>tes outils IA</span></div></li>
+      <li class="etape-p r"><span class="noeud">02</span><div class="carte-p"><h3>La méthode</h3><p>Comment trouver tes premiers clients, étape par étape.</p><span class="livrable"><small>Tu repars avec</small>ta méthode</span></div></li>
+      <li class="etape-p r"><span class="noeud">03</span><div class="carte-p"><h3>Les scripts</h3><p>Quoi leur dire et quoi leur envoyer, mot pour mot.</p><span class="livrable"><small>Tu repars avec</small>tes scripts</span></div></li>
+      <li class="etape-p r"><span class="noeud">04</span><div class="carte-p"><h3>Le passage à l’action</h3><p>Un plan simple&nbsp;: tu appliques, tu avances.</p><span class="livrable"><small>Tu repars avec</small>ton plan</span></div></li>
+    </ol>
+    </div>
+    <div class="bloc-cta r" style="margin-top:36px">
+      <button type="button" class="bouton" data-ouvrir>Je veux commencer <span class="fleche"><svg><use href="#i-fleche"/></svg></span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ========== POUR QUI ========== -->
+<section class="sec" style="padding-top:0">
+  <div class="col">
+    <div class="entete-sec centre r">
+      <p class="etiquette">Pour qui</p>
+      <h2 class="h2">C’est pour <em>toi</em>&nbsp;?</h2>
+    </div>
+    <div class="pour-qui">
+      <div class="qui oui r">
+        <h3>C’est pour toi si…</h3>
+        <ul>
+          <li><span class="rond"><svg><use href="#i-coche"/></svg></span>Tu pars de zéro, sans aucune compétence technique</li>
+          <li><span class="rond"><svg><use href="#i-coche"/></svg></span>Tu veux du concret, pas de la théorie</li>
+          <li><span class="rond"><svg><use href="#i-coche"/></svg></span>Tu es prêt à appliquer</li>
+        </ul>
+      </div>
+      <div class="qui non r">
+        <h3>Ce n’est pas pour toi si…</h3>
+        <ul>
+          <li><span class="rond"><svg><use href="#i-croix"/></svg></span>Tu cherches de l’argent sans rien faire</li>
+          <li><span class="rond"><svg><use href="#i-croix"/></svg></span>Tu veux faire du trading ou du casino</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== COMMENT ÇA SE PASSE ========== -->
+<section class="sec" style="padding-top:0">
+  <div class="large" style="max-width:calc(1040px + 2 * var(--gouttiere))">
+    <div class="entete-sec centre r">
+      <p class="etiquette">Comment ça se passe</p>
+      <h2 class="h2">Trois étapes, <em>c’est tout.</em></h2>
+    </div>
+    <ol class="etapes">
+      <li class="etape r"><span class="icone"><svg><use href="#i-formulaire"/></svg></span><div><small>Étape 1</small><h3>Tu remplis le formulaire</h3><p>30 secondes.</p></div></li>
+      <li class="etape vedette r"><span class="icone"><svg><use href="#i-tel"/></svg></span><div><small>Étape 2</small><h3>On t’appelle dans les 10 minutes</h3><p>Sur ton numéro ou sur WhatsApp. Un membre de l’équipe répond à tes questions et voit avec toi si c’est fait pour toi.</p></div></li>
+      <li class="etape r"><span class="icone"><svg><use href="#i-cle"/></svg></span><div><small>Étape 3</small><h3>Tu accèdes à tout</h3><p>La formation, ton outil, les scripts et ton coach.</p></div></li>
+    </ol>
+    <div class="bloc-cta r" style="margin-top:36px">
+      <button type="button" class="bouton" data-ouvrir>Je veux commencer <span class="fleche"><svg><use href="#i-fleche"/></svg></span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ========== QUI JE SUIS ========== -->
+<section class="sec" style="padding-top:0">
+  <div class="large" style="max-width:calc(1040px + 2 * var(--gouttiere))">
+    <div class="moi">
+      <!-- Photo : img/jvj-moi.webp (portrait 4:5, 1000 × 1250 environ) -->
+      <figure class="photo r">
+        <span class="photo-vide"><svg class="couronne" aria-hidden="true"><use href="#couronne"/></svg>Portrait à venir</span>
+        <img src="img/jvj-moi.webp" alt="Portrait de Jean Val Jean" loading="lazy" decoding="async" width="940" height="1386" style="object-position:50% 70%" onerror="this.remove()">
+        <span class="tag"><svg class="couronne" aria-hidden="true"><use href="#couronne"/></svg>@jean_val_jean06</span>
+      </figure>
+      <div class="r">
+        <p class="etiquette">Qui je suis</p>
+        <h2>Moi, c’est <em>Jean Val Jean.</em></h2>
+        <p class="grand">Plus de <b>140&nbsp;000 personnes</b> me suivent sur TikTok.</p>
+        <!-- [Parcours de JVJ, à écrire avec lui] : 2 ou 3 phrases dans la balise ci-dessous. Vide = masquée. -->
+        <p class="parcours"></p>
+        <div class="reseaux"><span>No Trading</span><span>No Casino</span><span>J’ai choisi la vie 2 star</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section class="sec" style="padding-top:0">
+  <div class="col">
+    <div class="entete-sec centre r">
+      <p class="etiquette">FAQ</p>
+      <h2 class="h2">Tes <em>questions</em></h2>
+    </div>
+    <div class="faq">
+      <details class="r"><summary>Je n’y connais rien en IA, c’est pour moi&nbsp;?<span class="plus" aria-hidden="true"></span></summary><p>Oui. La formation part de zéro, et ton coach IA t’accompagne à chaque étape.</p></details>
+      <details class="r"><summary>Est-ce que je dois savoir coder&nbsp;?<span class="plus" aria-hidden="true"></span></summary><p>Non. Tout se fait sans code.</p></details>
+      <details class="r"><summary>C’est du trading ou du casino&nbsp;?<span class="plus" aria-hidden="true"></span></summary><p>Non. Ni trading, ni casino. De l’IA, des méthodes et des scripts.</p></details>
+      <details class="r"><summary>Combien ça coûte&nbsp;?<span class="plus" aria-hidden="true"></span></summary><p>Moins cher qu’un resto, grâce à notre partenariat avec un logiciel IA. L’équipe te donne tous les détails au téléphone.</p></details>
+      <details class="r"><summary>Combien je vais gagner&nbsp;?<span class="plus" aria-hidden="true"></span></summary><p>Personne ne peut te le promettre. Ça dépend de ton travail et de ton implication. La formation te donne les outils, les méthodes et les scripts pour aller chercher tes premiers clients.</p></details>
+      <details class="r"><summary>Comment j’accède à la formation&nbsp;?<span class="plus" aria-hidden="true"></span></summary><p>Tu remplis le formulaire. Un membre de l’équipe t’appelle dans les 10 minutes et t’ouvre tes accès pendant l’appel.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CARTE FINALE ========== -->
+<section style="padding:0">
+  <div class="col">
+    <div class="finale r" id="finale">
+      <svg class="ciel" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><g fill="#F5F2EA"><circle cx="1142" cy="740" r="0.8" opacity="0.13"/><circle cx="210" cy="528" r="1.1" opacity="0.26"/><circle cx="1109" cy="245" r="1.1" opacity="0.45"/><circle cx="1311" cy="485" r="1" opacity="0.33"/><circle cx="1159" cy="239" r="1.1" opacity="0.15"/><circle cx="612" cy="891" r="0.9" opacity="0.43"/><circle cx="641" cy="84" r="1.1" opacity="0.42"/><circle cx="140" cy="41" r="1.3" opacity="0.37"/><circle cx="519" cy="839" r="1" opacity="0.34"/><circle cx="1397" cy="803" r="0.6" opacity="0.36"/><circle cx="353" cy="387" r="0.6" opacity="0.15"/><circle cx="1267" cy="473" r="1.1" opacity="0.22"/><circle cx="1035" cy="342" r="1" opacity="0.2"/><circle cx="1246" cy="628" r="1.6" opacity="0.64"/><circle cx="25" cy="300" r="1" opacity="0.36"/><circle cx="539" cy="475" r="1.1" opacity="0.5"/><circle cx="78" cy="381" r="0.9" opacity="0.16"/><circle cx="635" cy="725" r="1" opacity="0.37"/><circle cx="1281" cy="402" r="1.3" opacity="0.15"/><circle cx="614" cy="273" r="0.6" opacity="0.19"/><circle cx="979" cy="406" r="0.7" opacity="0.13"/><circle cx="775" cy="226" r="0.7" opacity="0.22"/><circle cx="650" cy="835" r="0.9" opacity="0.47"/><circle cx="607" cy="437" r="1.1" opacity="0.3"/><circle cx="205" cy="340" r="1.3" opacity="0.3"/><circle cx="528" cy="147" r="1" opacity="0.26"/><circle cx="868" cy="288" r="0.9" opacity="0.4"/><circle cx="228" cy="745" r="1" opacity="0.29"/><circle cx="82" cy="27" r="0.6" opacity="0.38"/><circle cx="534" cy="884" r="1" opacity="0.14"/><circle cx="277" cy="853" r="0.9" opacity="0.43"/><circle cx="1152" cy="472" r="1.6" opacity="0.51"/><circle cx="534" cy="866" r="0.7" opacity="0.35"/><circle cx="208" cy="565" r="0.6" opacity="0.14"/><circle cx="688" cy="652" r="1.6" opacity="0.46"/><circle cx="794" cy="555" r="0.7" opacity="0.35"/><circle cx="1312" cy="817" r="0.9" opacity="0.31"/><circle cx="29" cy="574" r="0.7" opacity="0.47"/><circle cx="635" cy="701" r="0.8" opacity="0.3"/><circle cx="834" cy="748" r="0.8" opacity="0.23"/><circle cx="1353" cy="75" r="0.8" opacity="0.22"/><circle cx="681" cy="400" r="1.1" opacity="0.15"/><circle cx="1176" cy="575" r="0.6" opacity="0.4"/><circle cx="484" cy="29" r="1.1" opacity="0.41"/><circle cx="1368" cy="631" r="0.6" opacity="0.18"/><circle cx="973" cy="360" r="1.1" opacity="0.31"/><circle cx="108" cy="67" r="0.6" opacity="0.19"/><circle cx="1020" cy="165" r="1" opacity="0.34"/><circle cx="559" cy="201" r="1" opacity="0.39"/><circle cx="181" cy="622" r="0.7" opacity="0.33"/><circle cx="7" cy="725" r="1.3" opacity="0.24"/><circle cx="549" cy="397" r="1" opacity="0.33"/><circle cx="953" cy="645" r="1.3" opacity="0.4"/><circle cx="392" cy="167" r="1.1" opacity="0.36"/><circle cx="554" cy="55" r="1.6" opacity="0.64"/><circle cx="165" cy="640" r="0.8" opacity="0.35"/><circle cx="86" cy="202" r="1.3" opacity="0.33"/><circle cx="1328" cy="264" r="1.1" opacity="0.34"/><circle cx="85" cy="804" r="0.6" opacity="0.39"/><circle cx="256" cy="616" r="1.6" opacity="0.66"/><circle cx="1430" cy="383" r="0.8" opacity="0.29"/><circle cx="291" cy="773" r="1.3" opacity="0.36"/><circle cx="400" cy="12" r="1.1" opacity="0.4"/><circle cx="1433" cy="637" r="1.3" opacity="0.32"/><circle cx="842" cy="581" r="1.1" opacity="0.16"/><circle cx="1366" cy="25" r="0.8" opacity="0.29"/><circle cx="1199" cy="47" r="0.6" opacity="0.25"/><circle cx="698" cy="417" r="1.1" opacity="0.34"/><circle cx="393" cy="119" r="0.7" opacity="0.21"/><circle cx="955" cy="884" r="1" opacity="0.36"/><circle cx="692" cy="243" r="0.6" opacity="0.19"/><circle cx="646" cy="728" r="1.3" opacity="0.12"/><circle cx="231" cy="137" r="0.9" opacity="0.45"/><circle cx="764" cy="625" r="0.9" opacity="0.2"/><circle cx="928" cy="350" r="0.9" opacity="0.45"/><circle cx="1231" cy="304" r="0.7" opacity="0.23"/><circle cx="847" cy="611" r="1.3" opacity="0.24"/><circle cx="119" cy="560" r="1.1" opacity="0.15"/><circle cx="548" cy="113" r="1.3" opacity="0.18"/><circle cx="1337" cy="45" r="0.9" opacity="0.47"/><circle cx="1271" cy="296" r="0.9" opacity="0.45"/><circle cx="935" cy="718" r="1.6" opacity="0.48"/><circle cx="158" cy="543" r="0.7" opacity="0.43"/><circle cx="729" cy="704" r="0.6" opacity="0.15"/><circle cx="1199" cy="679" r="0.8" opacity="0.18"/><circle cx="1048" cy="825" r="0.7" opacity="0.21"/><circle cx="181" cy="431" r="1" opacity="0.16"/><circle cx="884" cy="410" r="1" opacity="0.26"/><circle cx="208" cy="299" r="0.6" opacity="0.22"/><circle cx="2" cy="794" r="1.6" opacity="0.7"/><circle cx="656" cy="55" r="1.1" opacity="0.16"/><circle cx="1344" cy="302" r="1.3" opacity="0.26"/><circle cx="1199" cy="133" r="0.9" opacity="0.4"/><circle cx="1134" cy="851" r="0.7" opacity="0.16"/><circle cx="642" cy="11" r="0.7" opacity="0.38"/><circle cx="691" cy="63" r="1.1" opacity="0.2"/><circle cx="782" cy="878" r="0.8" opacity="0.22"/><circle cx="780" cy="311" r="0.8" opacity="0.29"/><circle cx="1413" cy="647" r="1.6" opacity="0.64"/><circle cx="953" cy="560" r="1.6" opacity="0.67"/><circle cx="713" cy="483" r="0.6" opacity="0.24"/><circle cx="1237" cy="514" r="0.8" opacity="0.14"/><circle cx="1047" cy="632" r="0.7" opacity="0.39"/><circle cx="247" cy="2" r="1.3" opacity="0.26"/><circle cx="266" cy="165" r="0.7" opacity="0.3"/><circle cx="1281" cy="560" r="1.1" opacity="0.15"/><circle cx="619" cy="526" r="1" opacity="0.29"/><circle cx="315" cy="886" r="1.6" opacity="0.62"/><circle cx="725" cy="474" r="1.1" opacity="0.49"/><circle cx="433" cy="383" r="1.3" opacity="0.33"/><circle cx="1290" cy="146" r="1.1" opacity="0.31"/><circle cx="1177" cy="884" r="1.6" opacity="0.62"/><circle cx="88" cy="388" r="1.1" opacity="0.22"/><circle cx="2" cy="239" r="0.9" opacity="0.27"/><circle cx="1013" cy="750" r="1.6" opacity="0.48"/><circle cx="1155" cy="402" r="0.8" opacity="0.21"/><circle cx="22" cy="46" r="1.3" opacity="0.26"/><circle cx="316" cy="265" r="1.1" opacity="0.46"/><circle cx="155" cy="714" r="0.6" opacity="0.13"/><circle cx="370" cy="191" r="1.3" opacity="0.19"/><circle cx="194" cy="89" r="1.6" opacity="0.5"/><circle cx="471" cy="378" r="1" opacity="0.34"/><circle cx="650" cy="868" r="1.3" opacity="0.19"/><circle cx="163" cy="602" r="0.7" opacity="0.34"/><circle cx="671" cy="693" r="1.3" opacity="0.35"/><circle cx="277" cy="821" r="0.9" opacity="0.21"/><circle cx="1415" cy="674" r="0.6" opacity="0.46"/><circle cx="524" cy="449" r="0.9" opacity="0.26"/><circle cx="519" cy="641" r="0.6" opacity="0.28"/><circle cx="848" cy="274" r="0.9" opacity="0.21"/><circle cx="664" cy="518" r="0.9" opacity="0.38"/><circle cx="675" cy="295" r="0.9" opacity="0.12"/><circle cx="1274" cy="547" r="1.1" opacity="0.14"/><circle cx="37" cy="659" r="1" opacity="0.25"/><circle cx="522" cy="820" r="0.6" opacity="0.27"/><circle cx="863" cy="27" r="0.7" opacity="0.35"/><circle cx="773" cy="747" r="1.3" opacity="0.47"/><circle cx="1198" cy="348" r="0.6" opacity="0.36"/><circle cx="602" cy="158" r="0.8" opacity="0.13"/><circle cx="781" cy="184" r="1.3" opacity="0.13"/><circle cx="928" cy="506" r="0.9" opacity="0.2"/><circle cx="539" cy="130" r="0.7" opacity="0.45"/><circle cx="388" cy="198" r="0.7" opacity="0.26"/><circle cx="1088" cy="574" r="0.7" opacity="0.4"/><circle cx="1300" cy="50" r="0.9" opacity="0.49"/><circle cx="761" cy="826" r="1.1" opacity="0.48"/><circle cx="1326" cy="849" r="1.1" opacity="0.15"/><circle cx="972" cy="601" r="1.3" opacity="0.16"/><circle cx="819" cy="434" r="1.1" opacity="0.19"/><circle cx="303" cy="770" r="0.7" opacity="0.24"/></g></svg>
+      <div class="quadrillage" aria-hidden="true"></div>
+      <div class="horizon" aria-hidden="true"></div>
+      <svg class="couronne-grande" aria-hidden="true"><use href="#couronne"/></svg>
+      <h2>Tout le monde me demande ce que je fais. Maintenant, <em>tu sais.</em></h2>
+      <div class="bloc-cta">
+        <button type="button" class="bouton" data-ouvrir>Je veux commencer <span class="fleche"><svg><use href="#i-fleche"/></svg></span></button>
+        <p class="rassurance"><span class="point" aria-hidden="true"></span>Un membre de l’équipe t’appelle dans les 10 minutes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ========== PIED DE PAGE ========== -->
+<footer>
+  <div class="col">
+    <span class="pied-nom"><svg class="couronne" aria-hidden="true"><use href="#couronne"/></svg>Jean Val Jean</span>
+    <p class="pied-ligne">Contact&nbsp;: <span id="contactEmail"><mark class="todo">[À FOURNIR]</mark></span></p>
+    <p class="pied-ligne">
+      <a href="#" data-lien="mentions" target="_blank" rel="noopener">Mentions légales</a> ·
+      <a href="#" data-lien="confidentialite" target="_blank" rel="noopener">Politique de confidentialité</a> ·
+      <a href="#" data-lien="cgv" target="_blank" rel="noopener">CGV</a>
+      <mark class="todo" id="liensTodo">[À FOURNIR]</mark>
+    </p>
+    <div class="avertissements">
+      <p class="resultats">Les résultats dépendent de chacun. Aucun résultat n’est garanti.</p>
+      <p>Ce site ne fait pas partie du site web Facebook ou de Meta Platforms, Inc., ni de TikTok ou de ByteDance Ltd. En outre, ce site n’est en aucune façon approuvé par Facebook, Instagram ou TikTok. Facebook et Instagram sont des marques déposées de Meta Platforms, Inc. TikTok est une marque déposée de ByteDance Ltd.</p>
+      <p>This site is not part of the Facebook website or Meta Platforms, Inc., nor of TikTok or ByteDance Ltd. Additionally, this site is NOT endorsed by Facebook, Instagram or TikTok in any way. FACEBOOK and INSTAGRAM are trademarks of Meta Platforms, Inc. TIKTOK is a trademark of ByteDance Ltd.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Barre fixe (mobile) -->
+<div class="barre" id="barre" aria-hidden="true">
+  <div class="barre-texte"><b>Formation IA</b><em>moins cher qu’un resto</em></div>
+  <button type="button" class="bouton" data-ouvrir tabindex="-1">Commencer <span class="fleche"><svg><use href="#i-fleche"/></svg></span></button>
+</div>
+
+<!-- ========== LE FORMULAIRE, EN MODALE ==========
+     Ouverte par tous les boutons « JE VEUX COMMENCER » (data-ouvrir),
+     et à l'arrivée si l'adresse se termine par #formulaire. -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitre" aria-hidden="true">
+  <div class="modal" id="formulaire">
+    <button type="button" class="modal-fermer" id="modalFermer" aria-label="Fermer"><svg><use href="#i-croix"/></svg></button>
+    <div id="blocFormulaire">
+      <p class="etiquette"><svg class="couronne" aria-hidden="true"><use href="#couronne"/></svg>Formation IA</p>
+      <h2 id="modalTitre">Laisse tes infos. On t’appelle dans les <em>10 minutes.</em></h2>
+      <p class="sous-titre">Sur ton numéro ou sur WhatsApp.</p>
+      <form id="form" novalidate>
+        <div class="deux">
+          <div class="champ">
+            <label for="firstName">Prénom</label>
+            <input type="text" id="firstName" name="firstName" autocomplete="given-name" maxlength="80" required>
+          </div>
+          <div class="champ">
+            <label for="lastName">Nom</label>
+            <input type="text" id="lastName" name="lastName" autocomplete="family-name" maxlength="80" required>
+          </div>
+        </div>
+        <div class="champ">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" autocomplete="email" inputmode="email" maxlength="160" placeholder="ton@email.com" required>
+        </div>
+        <div class="champ">
+          <label for="phone">Téléphone <span>(WhatsApp de préférence)</span></label>
+          <div class="tel">
+            <select id="country" name="country" aria-label="Indicatif du pays"></select>
+            <input type="tel" id="phone" name="phone" autocomplete="tel-national" inputmode="tel" placeholder="6 12 34 56 78" required>
+          </div>
+          <p class="indice" id="telApercu"></p>
+        </div>
+
+        <label class="consent" id="consentBloc">
+          <input type="checkbox" id="consent" name="consent" required>
+          <span>J’accepte d’être recontacté par téléphone ou sur WhatsApp au sujet de la formation. <a href="#" data-lien="confidentialite" target="_blank" rel="noopener">Politique de confidentialité</a></span>
+        </label>
+
+        <!-- Suivi des sources : remplis au chargement (paramètres de l'adresse, retenus 30 jours) -->
+        <input type="hidden" name="ref"          id="h_ref">
+        <input type="hidden" name="utm_source"   id="h_utm_source">
+        <input type="hidden" name="utm_medium"   id="h_utm_medium">
+        <input type="hidden" name="utm_campaign" id="h_utm_campaign">
+        <input type="hidden" name="utm_content"  id="h_utm_content">
+        <input type="hidden" name="utm_term"     id="h_utm_term">
+
+        <!-- Anti-spam : invisible pour l'humain, rempli par les robots -->
+        <div class="hp" aria-hidden="true">
+          <label for="company">Société</label>
+          <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
+        </div>
+
+        <p class="erreur" id="erreur" role="alert" hidden></p>
+        <button type="submit" class="bouton" id="envoyer">Être rappelé <span class="fleche"><svg><use href="#i-fleche"/></svg></span></button>
+        <p class="rassurance"><span class="point" aria-hidden="true"></span>30 secondes. On t’appelle dans les 10 minutes.</p>
+      </form>
+    </div>
+
+    <div class="merci" id="blocMerci" hidden tabindex="-1" role="status">
+      <span class="rond-merci"><svg><use href="#i-coche"/></svg></span>
+      <h2>C’est envoyé.</h2>
+      <p>Un membre de l’équipe t’appelle dans les 10 minutes (parfois un peu plus), sur ton numéro ou sur WhatsApp. Si tu vois un numéro inconnu, décroche&nbsp;: c’est sûrement nous.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   CONFIGURATION — tout ce qui reste à brancher est ici
+   ============================================================ */
+
+/* Enregistrement des leads : la table `leads` d'un projet Supabase,
+   même schéma que nos templates (CRM Mexed/supabase/INSTALLATION.sql).
+   La clé anon est PUBLIQUE par conception : la sécurité vient des
+   règles RLS (insertion seule). Jamais la clé service_role ici.
+   Tant que c'est vide, le formulaire n'envoie rien et le dit. */
+var SUPABASE_URL      = '';   // [À COMPLÉTER]
+var SUPABASE_ANON_KEY = '';   // [À COMPLÉTER]
+
+/* false : schéma des templates tel quel, `ref` part dans `source` et les
+   UTM dans `page_url`. true : envoie aussi les colonnes ref, utm_source,
+   utm_medium, utm_campaign, utm_content, utm_term (à créer d'abord). */
+var COLONNES_SUIVI = false;
+
+/* Client et offre : les templates n'ont pas de colonne pour ça (un projet
+   Supabase par client). Si on range JVJ dans une base partagée, créer les
+   colonnes `client` et `offre` puis passer CLIENT_OFFRE à true. */
+var CLIENT_OFFRE = false;
+var CLIENT = 'JVJ';
+var OFFRE  = 'JVJ — Formation IA';
+
+/* La VSL. Remplir UN des trois : identifiant Vimeo (chiffres seuls),
+   identifiant YouTube, ou chemin d'un fichier MP4 servi par le site.
+   `format` : '16 / 9' ou '9 / 16'. `affiche` : image facultative. */
+var VSL = { vimeo: '', youtube: '', fichier: '', format: '16 / 9', affiche: '' };   // [À COMPLÉTER]
+
+/* Pixels de conversion : vides = rien n'est chargé.
+   Meta : PageView au chargement, Lead à l'envoi du formulaire.
+   TikTok : page() au chargement, SubmitForm à l'envoi. */
+var PIXELS = { meta: '', tiktok: '' };   // [À COMPLÉTER]
+
+/* Pied de page et case de consentement. */
+var CONTACT_EMAIL = '';   // [À FOURNIR]
+var LIENS = { mentions: '', confidentialite: '', cgv: '' };   // [À FOURNIR]
+
+/* ------------------------------------------------------------
+   Indicatifs téléphoniques (repris des templates). Le numéro part
+   au format E.164 (06 12 34 56 78 + France -> +33612345678).
+   ------------------------------------------------------------ */
+var PAYS = [
+  ['FR','France','33'],        ['BE','Belgique','32'],      ['CH','Suisse','41'],
+  ['LU','Luxembourg','352'],   ['MC','Monaco','377'],       ['CA','Canada','1'],
+  ['US','États-Unis','1'],     ['MA','Maroc','212'],        ['DZ','Algérie','213'],
+  ['TN','Tunisie','216'],      ['SN','Sénégal','221'],      ['CI','Côte d\'Ivoire','225'],
+  ['CM','Cameroun','237'],     ['CD','RD Congo','243'],     ['CG','Congo','242'],
+  ['GA','Gabon','241'],        ['ML','Mali','223'],         ['BF','Burkina Faso','226'],
+  ['NE','Niger','227'],        ['TG','Togo','228'],         ['BJ','Bénin','229'],
+  ['GN','Guinée','224'],       ['MG','Madagascar','261'],   ['MU','Maurice','230'],
+  ['RE','La Réunion','262'],   ['GP','Guadeloupe','590'],   ['MQ','Martinique','596'],
+  ['GF','Guyane','594'],       ['PF','Polynésie fr.','689'],['NC','Nouvelle-Calédonie','687'],
+  ['HT','Haïti','509'],        ['ES','Espagne','34'],       ['PT','Portugal','351'],
+  ['IT','Italie','39'],        ['DE','Allemagne','49'],     ['AT','Autriche','43'],
+  ['NL','Pays-Bas','31'],      ['GB','Royaume-Uni','44'],   ['IE','Irlande','353'],
+  ['DK','Danemark','45'],      ['SE','Suède','46'],         ['NO','Norvège','47'],
+  ['FI','Finlande','358'],     ['PL','Pologne','48'],       ['RO','Roumanie','40'],
+  ['GR','Grèce','30'],         ['TR','Turquie','90'],       ['IL','Israël','972'],
+  ['AE','Émirats arabes unis','971'], ['SA','Arabie saoudite','966'], ['QA','Qatar','974'],
+  ['EG','Égypte','20'],        ['ZA','Afrique du Sud','27'],['NG','Nigéria','234'],
+  ['AO','Angola','244'],       ['BW','Botswana','267'],     ['BI','Burundi','257'],
+  ['CV','Cap-Vert','238'],     ['KM','Comores','269'],      ['DJ','Djibouti','253'],
+  ['ER','Érythrée','291'],     ['SZ','Eswatini','268'],     ['ET','Éthiopie','251'],
+  ['GM','Gambie','220'],       ['GH','Ghana','233'],        ['GQ','Guinée équatoriale','240'],
+  ['GW','Guinée-Bissau','245'],['KE','Kenya','254'],        ['LS','Lesotho','266'],
+  ['LR','Liberia','231'],      ['LY','Libye','218'],        ['MW','Malawi','265'],
+  ['MR','Mauritanie','222'],   ['MZ','Mozambique','258'],   ['NA','Namibie','264'],
+  ['UG','Ouganda','256'],      ['CF','Centrafrique','236'], ['RW','Rwanda','250'],
+  ['ST','Sao Tomé-et-Principe','239'], ['SC','Seychelles','248'], ['SL','Sierra Leone','232'],
+  ['SO','Somalie','252'],      ['SD','Soudan','249'],       ['SS','Soudan du Sud','211'],
+  ['TZ','Tanzanie','255'],     ['TD','Tchad','235'],        ['ZM','Zambie','260'],
+  ['ZW','Zimbabwe','263'],
+  ['BR','Brésil','55'],        ['MX','Mexique','52'],       ['AU','Australie','61'],
+  ['TH','Thaïlande','66'],     ['SG','Singapour','65'],     ['ID','Indonésie','62'],
+  ['CN','Chine','86'],         ['JP','Japon','81'],         ['KR','Corée du Sud','82'],
+  ['IN','Inde','91'],          ['PK','Pakistan','92'],      ['BD','Bangladesh','880'],
+  ['LK','Sri Lanka','94'],     ['NP','Népal','977'],        ['VN','Viêt Nam','84'],
+  ['PH','Philippines','63'],   ['MY','Malaisie','60'],      ['KH','Cambodge','855'],
+  ['LA','Laos','856'],         ['MM','Myanmar','95'],       ['HK','Hong Kong','852'],
+  ['TW','Taïwan','886'],       ['MO','Macao','853'],        ['MN','Mongolie','976'],
+  ['BN','Brunei','673'],       ['TL','Timor oriental','670'],['MV','Maldives','960'],
+  ['BT','Bhoutan','975'],      ['AF','Afghanistan','93'],   ['IR','Iran','98'],
+  ['IQ','Irak','964'],         ['JO','Jordanie','962'],     ['LB','Liban','961'],
+  ['SY','Syrie','963'],        ['KW','Koweït','965'],       ['BH','Bahreïn','973'],
+  ['OM','Oman','968'],         ['YE','Yémen','967'],        ['PS','Palestine','970'],
+  ['KZ','Kazakhstan','7'],     ['UZ','Ouzbékistan','998'],  ['KG','Kirghizistan','996'],
+  ['TJ','Tadjikistan','992'],  ['TM','Turkménistan','993'], ['AZ','Azerbaïdjan','994'],
+  ['AM','Arménie','374'],      ['GE','Géorgie','995'],      ['CY','Chypre','357']
+];
+
+/* Le 0 du début se retire (06… → +33 6…), sauf là où il fait partie du
+   numéro : en Côte d'Ivoire (07 01 02 03 04 → +225 07 01 02 03 04) et en
+   Italie pour les fixes. */
+var ZERO_GARDE = ['225', '39'];
+function versE164(indicatif, brut){
+  var chiffres = String(brut).replace(/\D/g, '');
+  if (ZERO_GARDE.indexOf(String(indicatif)) === -1) chiffres = chiffres.replace(/^0+/, '');
+  return chiffres ? '+' + indicatif + chiffres : '';
+}
+
+function envoyerLead(lead){
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY){
+    console.error('Supabase non configuré : renseigner SUPABASE_URL et SUPABASE_ANON_KEY.');
+    return Promise.reject(new Error('config'));
+  }
+  var corps = {
+    first_name: lead.firstName,
+    last_name:  lead.lastName,
+    email:      lead.email,
+    phone:      lead.phone,
+    page_url:   lead.pageUrl,
+    source:     lead.source
+  };
+  if (COLONNES_SUIVI) for (var k in lead.suivi) corps[k] = lead.suivi[k] || null;
+  if (CLIENT_OFFRE){ corps.client = CLIENT; corps.offre = OFFRE; }
+  return fetch(SUPABASE_URL + '/rest/v1/leads', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify(corps)
+  }).then(function(r){
+    if (r.ok) return;
+    return r.text().then(function(t){
+      console.error('Supabase a refusé le lead :', r.status, t);
+      throw new Error('supabase');
+    });
+  });
+}
+
+(function(){
+  function suivre(nom){ if (window.va) window.va('event', { name: nom }); }
+
+  /* ---------------- Pixels (seulement s'ils sont renseignés) ---------------- */
+  if (PIXELS.meta){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', PIXELS.meta); fbq('track', 'PageView');
+  }
+  if (PIXELS.tiktok){
+    !function(w,d,t){w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];
+    ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};
+    for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
+    ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e};
+    ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{};ttq._i[e]=[];ttq._i[e]._u=i;ttq._t=ttq._t||{};ttq._t[e]=+new Date;ttq._o=ttq._o||{};ttq._o[e]=n||{};
+    var o=d.createElement("script");o.type="text/javascript";o.async=!0;o.src=i+"?sdkid="+e+"&lib="+t;var a=d.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
+    ttq.load(PIXELS.tiktok);ttq.page();}(window,document,'ttq');
+  }
+  function conversion(){
+    if (window.fbq) fbq('track', 'Lead');
+    if (window.ttq) ttq.track('SubmitForm');
+  }
+
+  /* ---------------- Liens légaux et contact ---------------- */
+  var manque = false;
+  document.querySelectorAll('[data-lien]').forEach(function(a){
+    var url = LIENS[a.getAttribute('data-lien')];
+    if (url) a.href = url; else { manque = true; a.removeAttribute('target'); a.addEventListener('click', function(e){ e.preventDefault(); }); }
+  });
+  if (!manque) document.getElementById('liensTodo').remove();
+  if (CONTACT_EMAIL){
+    var c = document.getElementById('contactEmail');
+    c.innerHTML = '';
+    var l = document.createElement('a');
+    l.href = 'mailto:' + CONTACT_EMAIL; l.textContent = CONTACT_EMAIL;
+    c.appendChild(l);
+  }
+
+  /* ---------------- Suivi des sources ----------------
+     `?ref=jvj` (ou `?src=jvj`, ou le lien court `/jvj` servi par
+     vercel.json) et les UTM. Retenus 30 jours dans le navigateur :
+     un visiteur venu par /jvj qui revient par l'adresse normale reste
+     attribué à JVJ. Une nouvelle arrivée suivie remplace l'ancienne. */
+  var CLES = ['ref', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+  function suiviDeLAdresse(){
+    var q = new URLSearchParams(location.search), s = {}, trouve = false;
+    CLES.forEach(function(k){ var v = q.get(k); if (v){ s[k] = v.slice(0, 120); trouve = true; } });
+    if (!s.ref){
+      var alt = q.get('src');
+      var m = location.pathname.match(/^\/([A-Za-z0-9_-]{1,40})\/?$/);
+      if (alt) s.ref = alt.slice(0, 120);
+      else if (m && m[1] !== 'index') s.ref = m[1].toLowerCase();
+      if (s.ref) trouve = true;
+    }
+    return trouve ? s : null;
+  }
+  function suivi(){
+    var s = suiviDeLAdresse();
+    if (s){
+      try { localStorage.setItem('origine', JSON.stringify({ suivi:s, jusqua: Date.now() + 30*24*3600*1000 })); } catch(e){}
+      return s;
+    }
+    try {
+      var g = JSON.parse(localStorage.getItem('origine') || 'null');
+      if (g && g.jusqua > Date.now() && g.suivi) return g.suivi;
+    } catch(e){}
+    return {};
+  }
+  var SUIVI = suivi();
+  CLES.forEach(function(k){ document.getElementById('h_' + k).value = SUIVI[k] || ''; });
+  if (SUIVI.ref) suivre('Visite · ' + SUIVI.ref);
+
+  /* ---------------- La VSL : rien n'est chargé avant le clic ---------------- */
+  var cadre = document.querySelector('.vsl-cadre');
+  var affiche = document.getElementById('vslAffiche');
+  cadre.style.setProperty('--ratio', VSL.format);
+  if (VSL.format.replace(/\s/g, '') === '9/16') document.getElementById('vsl').style.maxWidth = '400px';
+  if (VSL.affiche) affiche.style.backgroundImage = 'url("' + VSL.affiche + '")';
+  var aUneVideo = !!(VSL.vimeo || VSL.youtube || VSL.fichier);
+  if (aUneVideo) document.getElementById('vslLegende').textContent = 'Regarde la vidéo';
+  else { affiche.setAttribute('aria-label', 'Vidéo à venir'); affiche.querySelector('.vsl-son').hidden = true; }
+  affiche.addEventListener('click', function(){
+    if (!aUneVideo) return;
+    var el;
+    if (VSL.fichier){
+      el = document.createElement('video');
+      el.src = VSL.fichier; el.controls = true; el.autoplay = true; el.playsInline = true;
+    } else {
+      el = document.createElement('iframe');
+      el.allow = 'autoplay; fullscreen; picture-in-picture';
+      el.allowFullscreen = true;
+      el.title = 'Vidéo de Jean Val Jean';
+      el.src = VSL.vimeo
+        ? 'https://player.vimeo.com/video/' + encodeURIComponent(VSL.vimeo) + '?autoplay=1&title=0&byline=0&portrait=0&dnt=1'
+        : 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(VSL.youtube) + '?autoplay=1&rel=0&playsinline=1';
+    }
+    affiche.replaceWith(el);
+    suivre('VSL lancée');
+  });
+
+  /* ---------------- Apparition douce, une seule fois ---------------- */
+  var aVoir = document.querySelectorAll('.r');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('vu'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    aVoir.forEach(function(el){ io.observe(el); });
+  } else aVoir.forEach(function(el){ el.classList.add('vu'); });
+
+  /* ---------------- Au défilement : rail du parcours + barre fixe ----------------
+     Calculé à chaque image plutôt qu'avec IntersectionObserver : un lancer
+     rapide au doigt peut sauter le bouton du hero sans le croiser. */
+  var parcours = document.getElementById('parcours');
+  var railPlein = parcours.querySelector('.rail-plein');
+  var etapesP = parcours.querySelectorAll('.etape-p');
+  var barre = document.getElementById('barre');
+  var ctaHero = document.getElementById('ctaHero');
+  var finale = document.getElementById('finale');
+  var modaleOuverte = false;
+  var attente = false;
+  function majDefilement(){
+    attente = false;
+    var h = innerHeight;
+
+    var r = parcours.getBoundingClientRect();
+    var p = Math.min(1, Math.max(0, (h * .62 - r.top) / r.height));
+    railPlein.style.height = (p * 100) + '%';
+    etapesP.forEach(function(li){
+      li.classList.toggle('atteinte', li.getBoundingClientRect().top + 24 < h * .62);
+    });
+
+    var v = !modaleOuverte
+         && ctaHero.getBoundingClientRect().bottom < 0
+         && finale.getBoundingClientRect().top > h * .85;
+    if (v !== barre.classList.contains('visible')){
+      barre.classList.toggle('visible', v);
+      barre.setAttribute('aria-hidden', v ? 'false' : 'true');
+      barre.querySelector('.bouton').tabIndex = v ? 0 : -1;
+    }
+  }
+  function demanderMaj(){ if (!attente){ attente = true; requestAnimationFrame(majDefilement); } }
+  window.addEventListener('scroll', demanderMaj, { passive: true });
+  window.addEventListener('resize', demanderMaj);
+  majDefilement();
+
+  /* ---------------- La modale ---------------- */
+  var overlay = document.getElementById('overlay');
+  var avant = null;
+  function ouvrir(){
+    suivre('Formulaire ouvert');
+    avant = document.activeElement;
+    modaleOuverte = true; majDefilement();
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function(){
+      var cible = document.getElementById('blocMerci').hidden ? document.getElementById('firstName') : document.getElementById('blocMerci');
+      cible.focus({ preventScroll: true });
+    }, 320);
+  }
+  function fermer(){
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    modaleOuverte = false; majDefilement();
+    if (avant) avant.focus({ preventScroll: true });
+  }
+  document.querySelectorAll('[data-ouvrir]').forEach(function(b){ b.addEventListener('click', ouvrir); });
+  document.getElementById('modalFermer').addEventListener('click', fermer);
+  overlay.addEventListener('click', function(e){ if (e.target === overlay) fermer(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && overlay.classList.contains('open')) fermer(); });
+  if (location.hash === '#formulaire') ouvrir();
+
+  /* ---------------- Le formulaire ---------------- */
+  var form   = document.getElementById('form');
+  var sel    = document.getElementById('country');
+  var tel    = document.getElementById('phone');
+  var apercu = document.getElementById('telApercu');
+  var erreur = document.getElementById('erreur');
+  var bouton = document.getElementById('envoyer');
+  var libelleBouton = bouton.innerHTML;
+  var CHAMPS = ['firstName', 'lastName', 'email', 'phone'];
+
+  PAYS.forEach(function(p){
+    var o = document.createElement('option');
+    o.value = p[2];
+    o.textContent = p[0] + ' +' + p[2];
+    o.setAttribute('data-pays', p[1]);
+    sel.appendChild(o);
+  });
+  sel.value = '33';
+
+  function e164(){ return versE164(sel.value, tel.value); }
+  function majApercu(){
+    var o = sel.options[sel.selectedIndex];
+    var n = e164();
+    apercu.textContent = (o ? o.getAttribute('data-pays') : '') + ' · ' + (n || 'saisis ton numéro sans l\'indicatif');
+  }
+  sel.addEventListener('change', majApercu);
+  tel.addEventListener('input', majApercu);
+  majApercu();
+
+  function montrer(msg){ erreur.textContent = msg; erreur.hidden = false; }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    erreur.hidden = true;
+
+    var ok = true;
+    CHAMPS.forEach(function(id){
+      var el = document.getElementById(id);
+      var v = el.value.trim();
+      var bon = !!v;
+      if (id === 'email' && bon) bon = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+      if (id === 'phone' && bon){ var d = e164().replace(/\D/g, ''); bon = d.length >= 8 && d.length <= 15; }
+      el.classList.toggle('invalide', !bon);
+      if (!bon) ok = false;
+    });
+    if (!ok){ montrer('Vérifie tes informations : tous les champs sont nécessaires, avec un e-mail et un numéro valides.'); return; }
+
+    /* Contrôlée en dernier, et le bouton reste actif : sur mobile, un bouton
+       grisé sur lequel on tape sans effet n'explique rien. */
+    var bloc = document.getElementById('consentBloc');
+    if (!document.getElementById('consent').checked){
+      bloc.classList.add('manque');
+      montrer('Coche la case pour qu\'on puisse t\'appeler.');
+      return;
+    }
+    bloc.classList.remove('manque');
+
+    var s = {};
+    CLES.forEach(function(k){ s[k] = document.getElementById('h_' + k).value || ''; });
+    var q = new URLSearchParams();
+    CLES.forEach(function(k){ if (s[k]) q.set(k, s[k]); });
+    var lead = {
+      firstName: document.getElementById('firstName').value.trim(),
+      lastName:  document.getElementById('lastName').value.trim(),
+      email:     document.getElementById('email').value.trim(),
+      phone:     e164(),
+      // Les UTM retenues partent avec l'adresse, même si la visite actuelle n'en a plus.
+      pageUrl:   (location.origin + location.pathname + (q.toString() ? '?' + q.toString() : '')).slice(0, 300),
+      source:    (s.ref || document.referrer || '').slice(0, 300) || null,
+      suivi:     s
+    };
+    var leurre = document.getElementById('company').value.trim();
+
+    bouton.setAttribute('aria-busy', 'true');
+    bouton.textContent = 'Envoi en cours…';
+
+    // Champ leurre rempli = robot : on simule un succès sans rien enregistrer.
+    (leurre ? Promise.resolve() : envoyerLead(lead))
+      .then(function(){
+        suivre('Formulaire envoyé');
+        if (s.ref) suivre('Formulaire envoyé · ' + s.ref);
+        if (!leurre) conversion();
+        document.getElementById('blocFormulaire').hidden = true;
+        var merci = document.getElementById('blocMerci');
+        merci.hidden = false;
+        merci.focus({ preventScroll: true });
+        document.getElementById('formulaire').scrollTop = 0;
+      })
+      .catch(function(err){
+        montrer(err && err.message === 'config'
+          ? 'Le formulaire n\'est pas encore relié à la base (configuration Supabase manquante).'
+          : 'L\'envoi a échoué. Réessaie dans un instant.');
+      })
+      .finally(function(){
+        bouton.removeAttribute('aria-busy');
+        bouton.innerHTML = libelleBouton;
+      });
+  });
+
+  CHAMPS.forEach(function(id){
+    document.getElementById(id).addEventListener('input', function(){ this.classList.remove('invalide'); });
+  });
+  document.getElementById('consent').addEventListener('change', function(){
+    if (this.checked) document.getElementById('consentBloc').classList.remove('manque');
+  });
+})();
+</script>
+</body>
+</html>
