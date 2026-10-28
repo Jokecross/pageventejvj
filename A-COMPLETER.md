@@ -20,7 +20,7 @@ Pour tout retrouver : `grep -n "À COMPLÉTER\|À FOURNIR" index.html`
 
 ## Textes à valider
 
-- **Hero (28/10, à la demande de Martin : « pas assez compréhensible »)** : accroche « Pas de trading. Pas de casino. »,
+- **Hero (28/10, à la demande de Martin : « pas assez compréhensible »)** : accroche « Pas de trading, pas de casino. »,
   titre « Génère tes premiers euros grâce à l’IA. », sous-titre « Sans compétences et sans savoir coder. »
   (remplace le titre du brief « Pas de trading. Pas de casino. L’IA. »). Surtitre « Vous êtes des milliers… », puces et phrase
   « Les outils, les méthodes et les scripts sont fournis… » retirés par Martin.
