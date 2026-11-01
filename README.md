@@ -9,7 +9,8 @@ ces pages n'a été modifiée. Le design est entièrement nouveau (DA « Nuit 2 
 
 ```
 index.html        la page
-img/              image de partage + portraits de JVJ (à déposer)
+img/              image de partage, portraits de JVJ, affiche de la VSL
+videos/           la VSL (MP4 720p, démarrage rapide)
 favicon.svg       la couronne
 vercel.json       URLs propres, liens courts /nom, noindex
 A-COMPLETER.md    tout ce qui attend un contenu réel

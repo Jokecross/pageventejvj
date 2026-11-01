@@ -5,7 +5,7 @@ Pour tout retrouver : `grep -n "À COMPLÉTER\|À FOURNIR" index.html`
 
 | Quoi | Où | État |
 |---|---|---|
-| ID de la VSL | `VSL.vimeo` (ou `VSL.youtube`, ou `VSL.fichier` pour un MP4) + `VSL.format` (`'16 / 9'` par défaut) + `VSL.affiche` (image facultative) | à venir |
+| VSL | `videos/vsl-jvj.mp4` (depuis « JEAN VSL V2 .mov », 4K → 720p H.264) + affiche `img/vsl-affiche.webp` | **faite le 01/11** : démarre seule sans le son, pas de pause ni d'avance, un appui = son + reprise du début, fin = bouton vers le formulaire. Pour la changer : nouveau nom de fichier (cache 7 j) |
 | Photos de JVJ | `img/jvj-profil.webp` (bateau, entière comme sur TikTok), `img/jvj-question.webp` (canapé), `img/jvj-moi.webp` (voiture, cigare) ; originaux dans `photos-brutes/` | **faites le 28/10** ; ⚠️ voiture + cigare et montre + bière : contraires au premier brief (« pas de voitures, pas de montres »), gardées sur choix de Martin |
 | Base des leads | `SUPABASE_URL` + `SUPABASE_ANON_KEY` (clé anon, jamais service_role) | rien n'est envoyé tant que c'est vide (la page le dit) |
 | Client « JVJ » / offre « JVJ — Formation IA » | les templates n'ont pas de colonne client/offre (un projet Supabase par client). Base partagée : créer `client` et `offre` dans `leads`, puis `CLIENT_OFFRE = true` | à décider |

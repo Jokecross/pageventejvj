@@ -121,7 +121,7 @@ svg.i{ width:1em; height:1em; flex:none; }
 }
 .bouton:hover .fleche{ transform:translateX(2px); }
 .bouton .fleche svg{ width:18px; height:18px; }
-.bouton:focus-visible, .faq summary:focus-visible, .modal-fermer:focus-visible, .vsl-affiche:focus-visible{ outline:2px solid var(--texte); outline-offset:3px; }
+.bouton:focus-visible, .faq summary:focus-visible, .modal-fermer:focus-visible{ outline:2px solid var(--texte); outline-offset:3px; }
 .bloc-cta{ display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center; }
 .bloc-cta .bouton{ width:100%; max-width:420px; justify-content:space-between; }
 .rassurance{ display:block; font-size:14px; line-height:1.5; color:var(--gris); text-wrap:balance; }
@@ -208,26 +208,50 @@ svg.i{ width:1em; height:1em; flex:none; }
   border-radius:22px; background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.03));
   box-shadow:0 40px 80px -30px rgba(0,0,0,.9);
 }
-.vsl-cadre{ position:relative; aspect-ratio:var(--ratio, 16 / 9); border-radius:16px; overflow:hidden; background:var(--fond-2); }
-.vsl-cadre iframe, .vsl-cadre video{ position:absolute; inset:0; width:100%; height:100%; border:0; background:#000; }
-.vsl-affiche{
+.vsl-cadre{ position:relative; aspect-ratio:16 / 9; border-radius:16px; overflow:hidden; background:#000; }
+.vsl-cadre video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; background:#000; }
+/* Plus aucune commande : pas de pause, pas d'avance, pas de menu */
+.vsl-cadre video::-webkit-media-controls{ display:none !important; }
+.vsl-cadre video::-webkit-media-controls-enclosure{ display:none !important; }
+
+/* Tant que le son est coupé : toute la vidéo est un bouton */
+.vsl-muet{
   position:absolute; inset:0; width:100%; padding:0; border:0; cursor:pointer;
-  background:var(--fond-2) center / cover no-repeat; color:var(--texte);
-  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
-}
-.vsl-lecture{
-  width:76px; height:76px; border-radius:50%; background:var(--or); color:var(--fond);
+  background:linear-gradient(180deg, rgba(11,11,12,0) 40%, rgba(11,11,12,.35));
   display:flex; align-items:center; justify-content:center;
-  box-shadow:0 0 0 10px rgba(227,182,79,.14);
-  transition:transform .25s ease;
+  -webkit-tap-highlight-color:transparent;
 }
-.vsl-affiche:hover .vsl-lecture{ transform:scale(1.05); }
-.vsl-lecture svg{ width:22px; height:24px; margin-left:4px; fill:currentColor; }
-.vsl-legende{ font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--gris); }
-.vsl-son{
-  position:absolute; left:14px; top:14px; display:inline-flex; align-items:center; gap:8px;
-  padding:6px 10px; border-radius:999px; background:rgba(11,11,12,.75); font-size:12px; color:var(--texte);
+.vsl-muet-carte{
+  display:inline-flex; align-items:center; gap:14px; padding:12px 18px 12px 12px; text-align:left;
+  border-radius:16px; background:rgba(11,11,12,.82); border:1px solid var(--or-bord);
+  box-shadow:0 20px 40px -18px rgba(0,0,0,.9);
+  transition:transform .2s ease;
 }
+.vsl-muet[hidden]{ display:none; }
+.vsl-muet:hover .vsl-muet-carte{ transform:scale(1.03); }
+.vsl-muet-icone{
+  position:relative; width:46px; height:46px; border-radius:50%; flex:none;
+  background:var(--or); color:var(--fond); display:flex; align-items:center; justify-content:center;
+}
+.vsl-muet-icone::after{
+  content:""; position:absolute; inset:-6px; border-radius:50%; border:1px solid var(--or);
+  animation:appel 2s ease-out infinite;
+}
+@keyframes appel{ 0%{ transform:scale(.85); opacity:.9; } 100%{ transform:scale(1.35); opacity:0; } }
+@media (prefers-reduced-motion: reduce){ .vsl-muet-icone::after{ animation:none; opacity:.5; } }
+.vsl-muet-icone svg{ width:22px; height:22px; }
+.vsl-muet-carte b{ display:block; font-family:var(--titre); font-weight:700; font-size:16px; letter-spacing:-.01em; color:var(--texte); line-height:1.25; }
+.vsl-muet-carte small{ display:block; font-size:13px; color:var(--or); line-height:1.35; margin-top:2px; }
+.vsl-muet:focus-visible{ outline:2px solid var(--texte); outline-offset:-4px; border-radius:16px; }
+
+/* Fin de la vidéo : on renvoie vers le formulaire */
+.vsl-fin{
+  position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px;
+  padding:20px; background:rgba(11,11,12,.78); text-align:center;
+}
+.vsl-fin[hidden]{ display:none; }
+.vsl-fin p{ font-family:var(--titre); font-weight:700; font-size:clamp(20px, 5vw, 30px); letter-spacing:-.02em; }
+.vsl-fin .bouton{ min-height:54px; }
 
 /* ============================================================
    CHIFFRES
@@ -571,6 +595,7 @@ footer a{ text-underline-offset:3px; }
   <symbol id="i-formulaire" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/></g></symbol>
   <symbol id="i-tel" viewBox="0 0 24 24"><path d="M6.6 3.5h2.6l1.4 4-2 1.4a12 12 0 0 0 6.5 6.5l1.4-2 4 1.4v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
   <symbol id="i-cle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l8-8M16 7l2 2M14 9l2 2"/></g></symbol>
+  <symbol id="i-muet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></g></symbol>
   <symbol id="i-son" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></g></symbol>
 </svg>
 
@@ -603,12 +628,23 @@ footer a{ text-underline-offset:3px; }
 
     <div class="vsl r" id="vsl">
       <div class="vsl-cadre">
-        <!-- La vidéo ne se charge qu'au clic : voir VSL dans la CONFIGURATION -->
-        <button type="button" class="vsl-affiche" id="vslAffiche" aria-label="Lancer la vidéo">
-          <span class="vsl-son"><svg class="i"><use href="#i-son"/></svg>Active le son</span>
-          <span class="vsl-lecture"><svg viewBox="0 0 18 20" aria-hidden="true"><path d="M0 0v20l18-10z"/></svg></span>
-          <span class="vsl-legende" id="vslLegende">Vidéo à venir</span>
+        <!-- La VSL : démarre seule, sans le son (muette + playsinline, c'est ce qui autorise
+             la lecture automatique, iPhone compris). Aucune commande : pas de pause, pas d'avance.
+             Un appui active le son et la reprend du début. Vidéo : videos/vsl-jvj.mp4 (720p, démarrage rapide). -->
+        <video id="vslVideo" src="videos/vsl-jvj.mp4" poster="img/vsl-affiche.webp"
+               muted autoplay loop playsinline webkit-playsinline preload="auto"
+               disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noplaybackrate noremoteplayback"
+               aria-label="Vidéo de Jean Val Jean"></video>
+        <button type="button" class="vsl-muet" id="vslMuet" aria-label="Activer le son de la vidéo">
+          <span class="vsl-muet-carte">
+            <span class="vsl-muet-icone"><svg aria-hidden="true"><use href="#i-muet"/></svg></span>
+            <span><b id="vslMuetTitre">Ta vidéo a commencé</b><small>Appuie pour activer le son</small></span>
+          </span>
         </button>
+        <div class="vsl-fin" id="vslFin" hidden>
+          <p>Prêt à te lancer&nbsp;?</p>
+          <button type="button" class="bouton" data-ouvrir>Je veux commencer <span class="fleche"><svg><use href="#i-fleche"/></svg></span></button>
+        </div>
       </div>
     </div>
 
@@ -933,10 +969,10 @@ var CLIENT_OFFRE = false;
 var CLIENT = 'JVJ';
 var OFFRE  = 'JVJ — Formation IA';
 
-/* La VSL. Remplir UN des trois : identifiant Vimeo (chiffres seuls),
-   identifiant YouTube, ou chemin d'un fichier MP4 servi par le site.
-   `format` : '16 / 9' ou '9 / 16'. `affiche` : image facultative. */
-var VSL = { vimeo: '', youtube: '', fichier: '', format: '16 / 9', affiche: '' };   // [À COMPLÉTER]
+/* La VSL est un fichier servi par le site (balise <video id="vslVideo"> du hero) :
+   videos/vsl-jvj.mp4 + l'affiche img/vsl-affiche.webp. Pour la changer, remplacer
+   le fichier SOUS UN AUTRE NOM (les vidéos sont mises en cache 7 jours) et mettre
+   à jour le src de la balise. */
 
 /* Pixels de conversion : vides = rien n'est chargé.
    Meta : PageView au chargement, Lead à l'envoi du formulaire.
@@ -1118,32 +1154,40 @@ function envoyerLead(lead){
   CLES.forEach(function(k){ document.getElementById('h_' + k).value = SUIVI[k] || ''; });
   if (SUIVI.ref) suivre('Visite · ' + SUIVI.ref);
 
-  /* ---------------- La VSL : rien n'est chargé avant le clic ---------------- */
-  var cadre = document.querySelector('.vsl-cadre');
-  var affiche = document.getElementById('vslAffiche');
-  cadre.style.setProperty('--ratio', VSL.format);
-  if (VSL.format.replace(/\s/g, '') === '9/16') document.getElementById('vsl').style.maxWidth = '400px';
-  if (VSL.affiche) affiche.style.backgroundImage = 'url("' + VSL.affiche + '")';
-  var aUneVideo = !!(VSL.vimeo || VSL.youtube || VSL.fichier);
-  if (aUneVideo) document.getElementById('vslLegende').textContent = 'Regarde la vidéo';
-  else { affiche.setAttribute('aria-label', 'Vidéo à venir'); affiche.querySelector('.vsl-son').hidden = true; }
-  affiche.addEventListener('click', function(){
-    if (!aUneVideo) return;
-    var el;
-    if (VSL.fichier){
-      el = document.createElement('video');
-      el.src = VSL.fichier; el.controls = true; el.autoplay = true; el.playsInline = true;
-    } else {
-      el = document.createElement('iframe');
-      el.allow = 'autoplay; fullscreen; picture-in-picture';
-      el.allowFullscreen = true;
-      el.title = 'Vidéo de Jean Val Jean';
-      el.src = VSL.vimeo
-        ? 'https://player.vimeo.com/video/' + encodeURIComponent(VSL.vimeo) + '?autoplay=1&title=0&byline=0&portrait=0&dnt=1'
-        : 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(VSL.youtube) + '?autoplay=1&rel=0&playsinline=1';
-    }
-    affiche.replaceWith(el);
-    suivre('VSL lancée');
+  /* ---------------- La VSL ----------------
+     Démarre seule et sans le son, en boucle. Pas de pause, pas d'avance :
+     aucune commande, et on reprend la main si le navigateur tente l'un ou
+     l'autre. Un appui sur la vidéo : le son s'active et elle repart du début
+     (une seule fois, sans boucle). À la fin, on renvoie vers le formulaire. */
+  var video = document.getElementById('vslVideo');
+  var muet = document.getElementById('vslMuet');
+  var finVsl = document.getElementById('vslFin');
+  var sonActif = false, vu = 0;
+  video.muted = true; video.defaultMuted = true;
+  function lire(){
+    var p = video.play();
+    // Lecture automatique refusée (mode économie d'énergie, etc.) : l'appui la lance.
+    if (p && p.catch) p.catch(function(){ if (!sonActif) document.getElementById('vslMuetTitre').textContent = 'Ta vidéo est prête'; });
+  }
+  lire();
+  video.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+  video.addEventListener('pause', function(){ if (!video.ended && !document.hidden) lire(); });
+  document.addEventListener('visibilitychange', function(){ if (!document.hidden && !video.ended) lire(); });
+  video.addEventListener('timeupdate', function(){ if (!video.seeking && video.currentTime > vu) vu = video.currentTime; });
+  video.addEventListener('seeking', function(){ if (video.currentTime > vu + 1) video.currentTime = vu; });
+  muet.addEventListener('click', function(){
+    sonActif = true; vu = 0;
+    video.loop = false;
+    video.currentTime = 0;
+    video.muted = false; video.volume = 1;
+    lire();
+    muet.hidden = true;
+    suivre('VSL son activé');
+  });
+  video.addEventListener('ended', function(){
+    if (!sonActif) return;
+    finVsl.hidden = false;
+    suivre('VSL vue en entier');
   });
 
   /* ---------------- Apparition douce, une seule fois ---------------- */
