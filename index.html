@@ -949,25 +949,14 @@ footer a{ text-underline-offset:3px; }
    CONFIGURATION — tout ce qui reste à brancher est ici
    ============================================================ */
 
-/* Enregistrement des leads : la table `leads` d'un projet Supabase,
-   même schéma que nos templates (CRM Mexed/supabase/INSTALLATION.sql).
-   La clé anon est PUBLIQUE par conception : la sécurité vient des
-   règles RLS (insertion seule). Jamais la clé service_role ici.
-   Tant que c'est vide, le formulaire n'envoie rien et le dit. */
-var SUPABASE_URL      = '';   // [À COMPLÉTER]
-var SUPABASE_ANON_KEY = '';   // [À COMPLÉTER]
-
-/* false : schéma des templates tel quel, `ref` part dans `source` et les
-   UTM dans `page_url`. true : envoie aussi les colonnes ref, utm_source,
-   utm_medium, utm_campaign, utm_content, utm_term (à créer d'abord). */
-var COLONNES_SUIVI = false;
-
-/* Client et offre : les templates n'ont pas de colonne pour ça (un projet
-   Supabase par client). Si on range JVJ dans une base partagée, créer les
-   colonnes `client` et `offre` puis passer CLIENT_OFFRE à true. */
-var CLIENT_OFFRE = false;
-var CLIENT = 'JVJ';
-var OFFRE  = 'JVJ — Formation IA';
+/* Enregistrement des leads : la table `leads` du projet Supabase de Sirius,
+   dans le même CRM et la même équipe (Base44) que la page Sirius. La colonne
+   `offre` dit de quelle page vient le lead (CRM Sirius/supabase/05-offre-jvj.sql).
+   La clé anon est PUBLIQUE par conception : la sécurité vient des règles RLS
+   (insertion seule). Jamais la clé service_role ici. */
+var SUPABASE_URL      = 'https://mmpazpnzkmianenkfyiv.supabase.co';
+var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1tcGF6cG56a21pYW5lbmtmeWl2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzMDgwOTcsImV4cCI6MjEwODg4NDA5N30.UhmwlOXXjj-q6MB1qR_uBNCd7anEkgYdk2Egp_9R6RA';
+var OFFRE = 'jvj';
 
 /* La VSL est un fichier servi par le site (balise <video id="vslVideo"> du hero) :
    videos/vsl-jvj.mp4 + l'affiche img/vsl-affiche.webp. Pour la changer, remplacer
@@ -1057,10 +1046,10 @@ function envoyerLead(lead){
     email:      lead.email,
     phone:      lead.phone,
     page_url:   lead.pageUrl,
-    source:     lead.source
+    source:     lead.source,
+    offre:      OFFRE
   };
-  if (COLONNES_SUIVI) for (var k in lead.suivi) corps[k] = lead.suivi[k] || null;
-  if (CLIENT_OFFRE){ corps.client = CLIENT; corps.offre = OFFRE; }
+  for (var k in lead.suivi) corps[k] = lead.suivi[k] || null;
   return fetch(SUPABASE_URL + '/rest/v1/leads', {
     method: 'POST',
     headers: {

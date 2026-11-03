@@ -39,11 +39,11 @@ Table public.leads (schéma des templates)  →  setters
 
 - Téléphone au format E.164, +33 par défaut.
 - **Suivi** : `?ref=jvj` (ou `?src=jvj`, ou `/jvj`) et les UTM sont retenus 30 jours
-  dans le navigateur et remplis dans des champs cachés. Sans colonnes dédiées
-  (`COLONNES_SUIVI = false`), `ref` part dans `source` et les UTM dans `page_url`.
+  dans le navigateur et remplis dans des champs cachés, puis envoyés dans les colonnes
+  `ref` et `utm_*`. `ref` part aussi dans `source`.
   Compter les leads de JVJ = filtrer `source = 'jvj'`.
-- **Client / offre** : `CLIENT_OFFRE = true` envoie `client = 'JVJ'` et
-  `offre = 'JVJ — Formation IA'` (colonnes à créer d'abord, voir A-COMPLETER.md).
+- **CRM** : les leads vont dans le CRM Sirius (même base, équipe Base44) avec `offre = 'jvj'`,
+  ce qui affiche la pastille « Page JVJ ».
 - **Anti-spam** : champ leurre `company` ; rempli, la page simule un succès sans rien envoyer.
 
 ## Les photos

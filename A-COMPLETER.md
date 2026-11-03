@@ -7,9 +7,7 @@ Pour tout retrouver : `grep -n "À COMPLÉTER\|À FOURNIR" index.html`
 |---|---|---|
 | VSL | `videos/vsl-jvj.mp4` (depuis « JEAN VSL V2 .mov », 4K → 720p H.264) + affiche `img/vsl-affiche.webp` | **faite le 01/11** : démarre seule sans le son, pas de pause ni d'avance, un appui = son + reprise du début, fin = bouton vers le formulaire. Pour la changer : nouveau nom de fichier (cache 7 j) |
 | Photos de JVJ | `img/jvj-profil.webp` (bateau, entière comme sur TikTok), `img/jvj-question.webp` (canapé), `img/jvj-moi.webp` (voiture, cigare) ; originaux dans `photos-brutes/` | **faites le 28/10** ; ⚠️ voiture + cigare et montre + bière : contraires au premier brief (« pas de voitures, pas de montres »), gardées sur choix de Martin |
-| Base des leads | `SUPABASE_URL` + `SUPABASE_ANON_KEY` (clé anon, jamais service_role) | rien n'est envoyé tant que c'est vide (la page le dit) |
-| Client « JVJ » / offre « JVJ — Formation IA » | les templates n'ont pas de colonne client/offre (un projet Supabase par client). Base partagée : créer `client` et `offre` dans `leads`, puis `CLIENT_OFFRE = true` | à décider |
-| Colonnes de suivi | `COLONNES_SUIVI = true` une fois les colonnes `ref`, `utm_*` créées | sinon `ref` → `source`, UTM → `page_url` |
+| Base des leads | projet Supabase de Sirius (`mmpazpnzkmianenkfyiv`), équipe Base44, `offre = jvj` | **branchée le 03/11** ; nécessite `CRM Sirius/supabase/05-offre-jvj.sql` |
 | Pixel Meta | `PIXELS.meta` (PageView + Lead à l'envoi) | à fournir |
 | Pixel TikTok | `PIXELS.tiktok` (page + SubmitForm à l'envoi) | à fournir |
 | E-mail de contact | `CONTACT_EMAIL` | à fournir |
