@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mentions légales, CGV et confidentialité — Jean Val Jean</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fond:#0B0B0C;--fond-2:#141416;
+  --texte:#F5F2EA;--gris:#A8A6A0;--gris-2:rgba(245,242,234,.48);
+  --or:#E3B64F;--or-voile:rgba(227,182,79,.10);--or-bord:rgba(227,182,79,.38);
+  --ligne:rgba(255,255,255,.08);--ligne-2:rgba(255,255,255,.14);
+  --titre:'Inter Tight','Inter',system-ui,sans-serif;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+  --gouttiere:18px;
+}
+@media (min-width:768px){:root{--gouttiere:32px}}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--fond);color:var(--gris);font-family:var(--sans);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--texte);text-decoration:underline;text-decoration-color:var(--ligne-2);text-underline-offset:3px;overflow-wrap:anywhere}
+a:hover{text-decoration-color:var(--or)}
+strong{color:var(--texte);font-weight:600}
+.col{max-width:760px;margin:0 auto;padding:0 var(--gouttiere)}
+
+.nav{position:sticky;top:0;z-index:5;background:rgba(11,11,12,.94);border-bottom:1px solid var(--ligne)}
+.nav .col{display:flex;align-items:center;justify-content:space-between;gap:16px;height:56px}
+.nav-retour{font-size:12px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+.nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0}
+.nav li{margin:0}
+.nav ul a{font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--gris);white-space:nowrap}
+.nav ul a:hover{color:var(--texte)}
+@media (max-width:560px){
+  .nav-retour{display:none}
+  .nav .col{justify-content:center}
+  .nav ul{gap:18px}
+  .nav ul a{font-size:11px}
+}
+
+header.titre{padding:56px 0 8px}
+.surtitre{display:flex;align-items:center;gap:8px;margin:0 0 14px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--or)}
+.surtitre svg{width:18px;height:13px;flex:none}
+h1,h2,h3{font-family:var(--titre);font-weight:700;color:var(--texte);letter-spacing:-.02em}
+h1{margin:0;font-size:clamp(34px,7vw,52px);line-height:1.08}
+h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--or);letter-spacing:0}
+.chapo{margin:18px 0 0}
+
+.partie{padding-top:56px;scroll-margin-top:40px}
+.partie-num{margin:0 0 6px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gris-2)}
+h2{margin:0 0 8px;padding-bottom:16px;border-bottom:1px solid var(--ligne-2);font-size:clamp(26px,5vw,36px);line-height:1.15}
+h3{margin:32px 0 8px;font-size:19px;line-height:1.3;display:flex;align-items:baseline;gap:12px}
+h3 span{font-family:var(--serif);font-style:italic;font-weight:400;font-size:24px;color:var(--or);min-width:1.1em}
+p{margin:0 0 12px}
+ul,ol{margin:0 0 12px;padding-left:20px}
+li{margin-bottom:6px}
+li::marker{color:var(--or)}
+
+.encart{margin:28px 0 0;padding:18px 20px;border-radius:12px;background:var(--or-voile);border:1px solid var(--or-bord)}
+.encart p{margin:0}
+
+table{width:100%;margin:8px 0 16px;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-weight:600;color:var(--texte);border-bottom:1px solid var(--ligne-2);padding:8px 12px 8px 0}
+td{border-bottom:1px solid var(--ligne);padding:9px 12px 9px 0;vertical-align:top}
+th:last-child,td:last-child{padding-right:0;width:34%}
+
+footer{margin-top:56px;padding:24px 0 48px;border-top:1px solid var(--ligne);font-size:12px;color:var(--gris-2)}
+footer .col{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="couronne" viewBox="0 0 24 17"><path fill="currentColor" d="M1 4.5l5.2 4.2L12 1l5.8 7.7L23 4.5 21 16H3z"/></symbol>
+</svg>
+
+<nav class="nav" aria-label="Parties du document">
+  <div class="col">
+    <a class="nav-retour" href="/">← Retour</a>
+    <ul>
+      <li><a href="#mentions">Mentions légales</a></li>
+      <li><a href="#cgv">CGV</a></li>
+      <li><a href="#confidentialite">Confidentialité</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="col">
+
+<header class="titre">
+  <p class="surtitre"><svg aria-hidden="true"><use href="#couronne"/></svg>Jean Val Jean · Formation IA</p>
+  <h1>Mentions légales,<br>CGV et <em>confidentialité</em></h1>
+  <p class="chapo">Ce document s’applique à ce site, à la formation IA de Jean Val Jean, à son espace membre et à la réservation de l’appel.</p>
+</header>
+
+<!-- ========== PARTIE 1 ========== -->
+<section class="partie" id="mentions">
+  <p class="partie-num">Partie 1</p>
+  <h2>Mentions légales</h2>
+
+  <h3><span>1</span>L’éditeur</h3>
+  <p>Le site est édité par <strong>MansasMogules L.L.C-FZ</strong>, société à responsabilité limitée (Limited Liability Company) de la zone franche de Meydan, Dubaï, Émirats arabes unis.</p>
+  <ul>
+    <li>Licence n° 2527516.01</li>
+    <li>Numéro d’immatriculation (Formation Number) : 2527516</li>
+    <li>Siège : Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubaï, Émirats arabes unis</li>
+  </ul>
+  <p>Dans ce document, « nous » désigne l’éditeur et « tu » désigne le visiteur, l’élève ou le client.</p>
+
+  <h3><span>2</span>Le directeur de la publication</h3>
+  <p>El Mehdi Alaoui Ismaili, gérant de MansasMogules L.L.C-FZ.</p>
+
+  <h3 data-contact><span>3</span>Nous contacter</h3>
+  <p data-contact>Par e-mail : <span data-contact-email></span>.</p>
+
+  <h3><span>4</span>L’hébergement</h3>
+  <p>Le site est hébergé par Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, États-Unis (<a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a>).</p>
+  <p>Les données du formulaire, des appels et de l’espace membre sont stockées chez Supabase (<a href="https://supabase.com" target="_blank" rel="noopener">supabase.com</a>).</p>
+
+  <h3><span>5</span>La propriété intellectuelle</h3>
+  <p>Les textes, vidéos, photos, prompts, modèles, logos et éléments graphiques du site et de la formation appartiennent à l’éditeur ou à Jean Val Jean, sauf mention contraire. Toute reproduction, diffusion ou revente, même partielle, sans autorisation écrite est interdite.</p>
+
+  <h3><span>6</span>Les marques citées</h3>
+  <p>Ce site ne fait pas partie du site web Facebook ou de Meta Platforms, Inc., ni de TikTok ou de ByteDance Ltd. Il n’est en aucune façon approuvé par Facebook, Instagram ou TikTok. Facebook et Instagram sont des marques déposées de Meta Platforms, Inc. TikTok est une marque déposée de ByteDance Ltd. Les autres marques citées appartiennent à leurs propriétaires respectifs.</p>
+
+  <h3><span>7</span>Les liens d’affiliation</h3>
+  <p>Certains liens vers des outils, notamment le logiciel IA partenaire de la formation, sont des liens d’affiliation : nous pouvons toucher une commission si tu t’abonnes à l’outil, sans aucun surcoût pour toi.</p>
+
+  <div class="encart">
+    <p><strong>Les résultats.</strong> Nos contenus et la formation ont une vocation éducative. Les résultats dépendent de ton travail et de ta situation. Aucun revenu ni résultat n’est garanti.</p>
+  </div>
+</section>
+
+<!-- ========== PARTIE 2 ========== -->
+<section class="partie" id="cgv">
+  <p class="partie-num">Partie 2</p>
+  <h2>Conditions générales de vente</h2>
+
+  <h3><span>1</span>Ce que couvrent ces conditions</h3>
+  <p>Ces conditions s’appliquent :</p>
+  <ol>
+    <li>à la réservation d’un appel à 4,99 € depuis la page de vente ;</li>
+    <li>à l’accès à la formation et à son espace membre.</li>
+  </ol>
+  <p>L’abonnement au logiciel IA partenaire est vendu par son éditeur, selon ses propres conditions et ses propres prix.</p>
+
+  <h3><span>2</span>La commande</h3>
+  <p>Tu dois être majeur et avoir la capacité de contracter. En validant ton paiement, tu confirmes avoir lu et accepté ces conditions. Les conditions applicables sont celles en vigueur le jour de ta commande.</p>
+
+  <h3><span>3</span>Le prix et le paiement</h3>
+  <p>La réservation de l’appel coûte 4,99 €, toutes taxes comprises. Elle se paie sur la page de vente, par carte, Apple Pay ou Google Pay, avec un paiement sécurisé par Whop. Nous ne voyons jamais tes coordonnées bancaires.</p>
+
+  <h3><span>4</span>L’appel</h3>
+  <p>Après ton paiement, un membre de l’équipe t’appelle, sur ton numéro ou sur WhatsApp, pour répondre à tes questions et voir si la formation est faite pour toi.</p>
+
+  <h3><span>5</span>Le remboursement et la rétractation</h3>
+  <p><strong>Réservation de l’appel à 4,99 €.</strong> Les 4,99 € te sont remboursés si tu réponds à notre appel. Si tu n’y réponds pas, ils ne sont pas remboursables. Si tu es un consommateur, tu gardes ton droit de rétractation de 14 jours à compter du paiement, tant que l’appel n’a pas eu lieu.</p>
+  <p><strong>Formation et espace membre.</strong> L’accès est fourni dès son ouverture. En le demandant, tu reconnais perdre ton droit de rétractation dès que l’accès commence (article L221-28, 13°, du Code de la consommation français, pour les consommateurs résidant en France).</p>
+
+  <h3><span>6</span>L’accès à la formation</h3>
+  <p>L’accès à l’espace membre est ouvert par l’équipe après l’appel. Certaines vidéos et certains jours du workshop s’ouvrent au fil des jours, comme indiqué dans l’espace membre. Nous pouvons faire évoluer, ajouter ou retirer des contenus pour les tenir à jour.</p>
+  <p>Ton accès est personnel : il est interdit de le partager, de le prêter ou de le revendre.</p>
+
+  <h3><span>7</span>La propriété intellectuelle</h3>
+  <p>Ton accès te donne un droit d’usage personnel des contenus, pour ton activité. Tu peux utiliser les prompts, modèles et méthodes pour tes propres clients. Tu ne peux pas copier, enregistrer, diffuser ou revendre les vidéos ou les documents eux-mêmes.</p>
+
+  <h3><span>8</span>La responsabilité</h3>
+  <p>Nous avons une obligation de moyens : nous fournissons les contenus prévus. Les résultats dépendent de ton travail et de ta situation, et aucun revenu n’est garanti.</p>
+  <p>Les outils tiers recommandés, dont le logiciel IA partenaire, sont régis par leurs propres conditions et leurs propres prix, à ta charge. Nous ne sommes pas responsables de leurs pannes, de leurs changements ou de leurs tarifs.</p>
+  <p>Tu restes seul responsable de ton activité, de tes clients, de tes déclarations et de tes obligations fiscales.</p>
+
+  <h3 data-contact><span>9</span>Les réclamations</h3>
+  <p data-contact>Pour toute réclamation, écris-nous à <span data-contact-email></span>. Nous cherchons d’abord une solution amiable pendant 30 jours.</p>
+
+  <h3><span>10</span>Le droit applicable</h3>
+  <p>Ces conditions sont régies par le droit de l’émirat de Dubaï et le droit fédéral des Émirats arabes unis. Si tu es un consommateur, tu gardes la protection des règles impératives de ton pays de résidence. À défaut d’accord amiable, le litige est porté devant les tribunaux compétents.</p>
+</section>
+
+<!-- ========== PARTIE 3 ========== -->
+<section class="partie" id="confidentialite">
+  <p class="partie-num">Partie 3</p>
+  <h2>Politique de confidentialité</h2>
+
+  <h3><span>1</span>Qui est responsable de tes données</h3>
+  <p>MansasMogules L.L.C-FZ, Dubaï, Émirats arabes unis (licence n° 2527516.01).<span data-contact> Pour toute question : <span data-contact-email></span>.</span></p>
+
+  <h3><span>2</span>Ce que nous collectons</h3>
+  <p><strong>Sur le site.</strong> Le site ne crée pas de compte. L’hébergeur enregistre des journaux techniques (adresse IP, date, page consultée) pour la sécurité. Le site peut utiliser des balises de mesure publicitaire (Meta, TikTok) pour savoir quelles publicités amènent des visiteurs, avec ton accord quand la loi l’exige. Le site garde dans ton navigateur, pendant 30 jours, le lien par lequel tu es arrivé.</p>
+  <p><strong>Quand tu demandes à être rappelé.</strong> Ton prénom, ton nom, ton téléphone, ton adresse e-mail, la page d’où tu viens, la source de ta visite et le suivi de nos échanges.</p>
+  <p><strong>Quand tu paies ta réservation.</strong> Le paiement est traité par Whop : nous recevons la confirmation, le montant et ton adresse e-mail, jamais tes coordonnées bancaires.</p>
+  <p><strong>Dans l’espace membre.</strong> Ton prénom, ton adresse e-mail, ton mot de passe, ta progression dans la formation et les captures que tu déposes.</p>
+
+  <h3><span>3</span>Pourquoi nous les utilisons</h3>
+  <table>
+    <thead><tr><th>Usage</th><th>Base légale</th></tr></thead>
+    <tbody>
+      <tr><td>Te rappeler et organiser ton appel</td><td>Ton consentement</td></tr>
+      <tr><td>Encaisser et, le cas échéant, rembourser ta réservation</td><td>Exécution du contrat</td></tr>
+      <tr><td>Te donner accès à l’espace membre et à la formation</td><td>Exécution du contrat</td></tr>
+      <tr><td>Suivre ta progression</td><td>Exécution du contrat</td></tr>
+      <tr><td>Répondre à tes messages et réclamations</td><td>Intérêt légitime</td></tr>
+      <tr><td>Sécuriser le site</td><td>Intérêt légitime</td></tr>
+      <tr><td>Mesurer nos publicités</td><td>Ton consentement</td></tr>
+      <tr><td>Tenir notre comptabilité</td><td>Obligation légale</td></tr>
+    </tbody>
+  </table>
+  <p>Nous ne vendons jamais tes données.</p>
+
+  <h3><span>4</span>Qui y a accès</h3>
+  <ul>
+    <li>Notre équipe, tenue à la confidentialité, pour ce dont elle a besoin.</li>
+    <li>Nos prestataires techniques : Whop (paiement de la réservation), Vercel (hébergement du site), Supabase (stockage des données du formulaire, des appels et de l’espace membre), WhatsApp (appels et messages), Meta et TikTok (publicité).</li>
+    <li>Les autorités, uniquement quand la loi l’impose.</li>
+  </ul>
+
+  <h3><span>5</span>Les transferts hors de l’Union européenne</h3>
+  <p>Nous sommes établis aux Émirats arabes unis et certains prestataires sont aux États-Unis. Tes données peuvent donc être traitées hors de l’Union européenne. Nous choisissons des prestataires qui offrent des garanties de protection, comme les clauses contractuelles types de la Commission européenne.</p>
+
+  <h3><span>6</span>Combien de temps nous les gardons</h3>
+  <ul>
+    <li>Demandes de rappel sans suite : 3 ans après le dernier contact.</li>
+    <li>Données de l’espace membre : le temps de ton accès, puis 3 ans.</li>
+    <li>Pièces comptables : 10 ans.</li>
+    <li>Balises publicitaires : 13 mois au maximum.</li>
+  </ul>
+
+  <h3><span>7</span>Tes droits</h3>
+  <p>Tu peux demander l’accès à tes données, leur rectification, leur suppression, leur portabilité, la limitation de leur usage, ou t’opposer à leur traitement. Tu peux retirer ton consentement aux appels et aux balises publicitaires à tout moment.<span data-contact> Pour exercer tes droits : <span data-contact-email></span>.</span> Nous répondons dans un délai de 1 mois.</p>
+  <p>Si tu résides dans l’Union européenne, tu peux aussi déposer une réclamation auprès de ton autorité de protection des données, en France la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>).</p>
+
+  <h3><span>8</span>La sécurité</h3>
+  <p>Nous limitons l’accès aux données aux personnes qui en ont besoin et nous utilisons des outils sécurisés. Aucun système n’étant infaillible, nous te prévenons en cas de fuite qui présente un risque pour toi.</p>
+
+  <h3><span>9</span>Les mineurs</h3>
+  <p>Nos offres sont réservées aux personnes majeures. Nous ne collectons pas sciemment de données de mineurs.</p>
+
+  <h3><span>10</span>Les modifications</h3>
+  <p>Ce document peut évoluer. La version en vigueur est celle publiée sur le site, avec sa date.</p>
+</section>
+
+</main>
+
+<footer>
+  <div class="col">
+    <span>MansasMogules L.L.C-FZ · Licence 2527516.01</span>
+    <span>Version du 08/11/2026</span>
+  </div>
+</footer>
+
+<script>
+/* L'adresse de contact : la même que celle du bas de la page de vente
+   (CONTACT_EMAIL dans index.html). Vide, les phrases qui la citent sont
+   retirées plutôt que d'afficher un trou. */
+var CONTACT_EMAIL = '';   // [À FOURNIR]
+document.querySelectorAll('[data-contact]').forEach(function(el){
+  if (!CONTACT_EMAIL){ el.remove(); return; }
+  el.querySelectorAll('[data-contact-email]').forEach(function(s){
+    var a = document.createElement('a');
+    a.href = 'mailto:' + CONTACT_EMAIL; a.textContent = CONTACT_EMAIL;
+    s.appendChild(a);
+  });
+});
+// Les numéros suivent ce qui reste affiché.
+document.querySelectorAll('.partie').forEach(function(sec){
+  sec.querySelectorAll('h3 > span').forEach(function(s, i){ s.textContent = i + 1; });
+});
+</script>
+</body>
+</html>

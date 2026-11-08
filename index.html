@@ -1012,7 +1012,7 @@ var WHOP_ACCOUNT_ID = 'biz_Ves4O7SXnR8wVU';
 
 /* Pied de page et case de consentement. */
 var CONTACT_EMAIL = '';   // [À FOURNIR]
-var LIENS = { mentions: '', confidentialite: '', cgv: '' };   // [À FOURNIR]
+var LIENS = { mentions: '/legal#mentions', confidentialite: '/legal#confidentialite', cgv: '/legal#cgv' };
 
 /* ------------------------------------------------------------
    Indicatifs téléphoniques (repris des templates). Le numéro part
@@ -1156,7 +1156,10 @@ function envoyerLead(lead, extra){
     if (url) a.href = url; else { manque = true; a.removeAttribute('target'); a.addEventListener('click', function(e){ e.preventDefault(); }); }
   });
   if (!manque) document.getElementById('liensTodo').remove();
-  if (CONTACT_EMAIL){
+  if (!CONTACT_EMAIL){
+    // Pas d'adresse : la ligne disparaît plutôt que d'afficher un trou.
+    document.getElementById('contactEmail').closest('.pied-ligne').remove();
+  } else {
     var c = document.getElementById('contactEmail');
     c.innerHTML = '';
     var l = document.createElement('a');
