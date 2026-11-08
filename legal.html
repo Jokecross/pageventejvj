@@ -192,6 +192,7 @@ footer .col{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24
   <h3><span>2</span>Ce que nous collectons</h3>
   <p><strong>Sur le site.</strong> Le site ne crée pas de compte. L’hébergeur enregistre des journaux techniques (adresse IP, date, page consultée) pour la sécurité. Le site peut utiliser des balises de mesure publicitaire (Meta, TikTok) pour savoir quelles publicités amènent des visiteurs, avec ton accord quand la loi l’exige. Le site garde dans ton navigateur, pendant 30 jours, le lien par lequel tu es arrivé.</p>
   <p><strong>Quand tu demandes à être rappelé.</strong> Ton prénom, ton nom, ton téléphone, ton adresse e-mail, la page d’où tu viens, la source de ta visite et le suivi de nos échanges.</p>
+  <p><strong>Pendant l’appel.</strong> L’appel peut être enregistré. Tu en es informé dans la case à cocher du formulaire, avant d’envoyer ta demande.</p>
   <p><strong>Quand tu paies ta réservation.</strong> Le paiement est traité par Whop : nous recevons la confirmation, le montant et ton adresse e-mail, jamais tes coordonnées bancaires.</p>
   <p><strong>Dans l’espace membre.</strong> Ton prénom, ton adresse e-mail, ton mot de passe, ta progression dans la formation et les captures que tu déposes.</p>
 
@@ -200,6 +201,7 @@ footer .col{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24
     <thead><tr><th>Usage</th><th>Base légale</th></tr></thead>
     <tbody>
       <tr><td>Te rappeler et organiser ton appel</td><td>Ton consentement</td></tr>
+      <tr><td>Enregistrer les appels, pour le suivi et la formation de l’équipe</td><td>Ton consentement</td></tr>
       <tr><td>Encaisser et, le cas échéant, rembourser ta réservation</td><td>Exécution du contrat</td></tr>
       <tr><td>Te donner accès à l’espace membre et à la formation</td><td>Exécution du contrat</td></tr>
       <tr><td>Suivre ta progression</td><td>Exécution du contrat</td></tr>
@@ -224,13 +226,14 @@ footer .col{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24
   <h3><span>6</span>Combien de temps nous les gardons</h3>
   <ul>
     <li>Demandes de rappel sans suite : 3 ans après le dernier contact.</li>
+    <li>Enregistrements d’appel : 6 mois au maximum.</li>
     <li>Données de l’espace membre : le temps de ton accès, puis 3 ans.</li>
     <li>Pièces comptables : 10 ans.</li>
     <li>Balises publicitaires : 13 mois au maximum.</li>
   </ul>
 
   <h3><span>7</span>Tes droits</h3>
-  <p>Tu peux demander l’accès à tes données, leur rectification, leur suppression, leur portabilité, la limitation de leur usage, ou t’opposer à leur traitement. Tu peux retirer ton consentement aux appels et aux balises publicitaires à tout moment.<span data-contact> Pour exercer tes droits : <span data-contact-email></span>.</span> Nous répondons dans un délai de 1 mois.</p>
+  <p>Tu peux demander l’accès à tes données, leur rectification, leur suppression, leur portabilité, la limitation de leur usage, ou t’opposer à leur traitement. Tu peux retirer ton consentement aux appels, à leur enregistrement et aux balises publicitaires à tout moment.<span data-contact> Pour exercer tes droits : <span data-contact-email></span>.</span> Nous répondons dans un délai de 1 mois.</p>
   <p>Si tu résides dans l’Union européenne, tu peux aussi déposer une réclamation auprès de ton autorité de protection des données, en France la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>).</p>
 
   <h3><span>8</span>La sécurité</h3>
@@ -256,7 +259,7 @@ footer .col{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24
 /* L'adresse de contact : la même que celle du bas de la page de vente
    (CONTACT_EMAIL dans index.html). Vide, les phrases qui la citent sont
    retirées plutôt que d'afficher un trou. */
-var CONTACT_EMAIL = '';   // [À FOURNIR]
+var CONTACT_EMAIL = 'Mainjf@hotmail.com';
 document.querySelectorAll('[data-contact]').forEach(function(el){
   if (!CONTACT_EMAIL){ el.remove(); return; }
   el.querySelectorAll('[data-contact-email]').forEach(function(s){

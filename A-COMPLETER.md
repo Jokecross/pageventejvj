@@ -10,8 +10,8 @@ Pour tout retrouver : `grep -n "À COMPLÉTER\|À FOURNIR" index.html`
 | Base des leads | projet Supabase de Sirius (`mmpazpnzkmianenkfyiv`), équipe Base44, `offre = jvj` | **branchée le 03/11** ; nécessite `CRM Sirius/supabase/05-offre-jvj.sql` |
 | Pixel Meta | `PIXELS.meta` (PageView + Lead à l'envoi) | à fournir |
 | Pixel TikTok | `PIXELS.tiktok` (page + SubmitForm à l'envoi) | à fournir |
-| E-mail de contact | `CONTACT_EMAIL` | à fournir |
-| Mentions légales, Politique de confidentialité, CGV | `LIENS.mentions`, `LIENS.confidentialite`, `LIENS.cgv` (la case de consentement suit `LIENS.confidentialite`) | à fournir |
+| E-mail de contact | `CONTACT_EMAIL` | fait (Mainjf@hotmail.com) |
+| Mentions légales, Politique de confidentialité, CGV | `LIENS` → /legal (legal.html, MansasMogules L.L.C-FZ) | fait le 08/11 |
 | Parcours de JVJ | section H, balise `<p class="parcours">` (masquée tant qu'elle est vide) | à écrire avec lui |
 | Image de partage | `og:image` dans `<head>` : mettre l'adresse absolue quand le domaine est connu | `img/partage.png` faite |
 | Indexation Google | `<meta name="robots" content="noindex">` + `X-Robots-Tag` dans `vercel.json` | noindex par défaut |
