@@ -13,7 +13,7 @@ Pour tout retrouver : `grep -n "À COMPLÉTER\|À FOURNIR" index.html`
 | E-mail de contact | `CONTACT_EMAIL` | fait (Mainjf@hotmail.com) |
 | Mentions légales, Politique de confidentialité, CGV | `LIENS` → /legal (legal.html, MansasMogules L.L.C-FZ) | fait le 08/11 |
 | Parcours de JVJ | section H, balise `<p class="parcours">` (masquée tant qu'elle est vide) | à écrire avec lui |
-| Image de partage | `og:image` dans `<head>` : mettre l'adresse absolue quand le domaine est connu | `img/partage.png` faite |
+| Image de partage | `og:image` dans `<head>` | fait : https://www.jvj-starter.com/img/partage.png |
 | Indexation Google | `<meta name="robots" content="noindex">` + `X-Robots-Tag` dans `vercel.json` | noindex par défaut |
 
 ## Textes à valider
